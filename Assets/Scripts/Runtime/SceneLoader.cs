@@ -4,15 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : Singleton<SceneLoader>
 {
-    public static SceneLoader Instance;
     public LoadingScreen loadingScreen;
 
-    public void Awake()
-    {
-        Instance = this;
-    }
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
