@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         SceneLoader.Instance.LoadSceneAsync("TitleScene");
+        AudioManager.Instance.PlayBGM("BGM");
     }
 
     // Update is called once per frame
