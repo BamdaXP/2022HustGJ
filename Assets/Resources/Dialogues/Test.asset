@@ -15,5 +15,5 @@ MonoBehaviour:
   text: Start testing corona virus! Start testing corona virus! Start testing corona
     virus!
   textSound: {fileID: 0}
-  textSpeed: 1
-  dialogueColor: {r: 1, g: 1, b: 1, a: 0}
+  textSpeed: 5
+  dialogueColor: {r: 1, g: 1, b: 1, a: 1}

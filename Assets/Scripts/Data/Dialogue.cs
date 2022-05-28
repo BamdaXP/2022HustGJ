@@ -6,7 +6,7 @@ public class Dialogue : ScriptableObject
     [TextArea]
     public string text;
     public AudioClip textSound;
-    [Range(1f,5f)]
-    public float textSpeed = 1f;
+    [Range(1f,10f)]
+    public float textSpeed = 5f;
     public Color dialogueColor = Color.white;
 }

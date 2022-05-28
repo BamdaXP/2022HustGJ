@@ -24,17 +24,12 @@ public List<Dialogue> dialogueQueue;
     public void AddDialogue(Dialogue dialogue)
     {
         dialogueQueue.Add(dialogue);
-        //Stop previous dialogue
-        StopCoroutine("Print");
-        text.text = "";
-        //Panel Color
-        panelImage.color = dialogue.dialogueColor;
-        //Show the window and wait
-        _window.Show();
-        while (_window.IsAnimating){}
-        //Start printing
-        StartCoroutine(Print(dialogue));
 
+    }
+    //Dont change alpha
+    public void SetColor(Color c)
+    {
+        panelImage.color = new Color(c.r, c.g, c.b, panelImage.color.a);
     }
     private void Update()
     {
@@ -45,6 +40,7 @@ public List<Dialogue> dialogueQueue;
         {
             IsDialoging = true;
             text.text = "";
+            SetColor(Color.white);
             _window.Show();
         }
         else if (dialogueQueue.Count == 0 && IsDialoging)
@@ -72,12 +68,15 @@ public List<Dialogue> dialogueQueue;
     IEnumerator Print(Dialogue dialogue)
     {
         string showingText = "";
+        SetColor(dialogue.dialogueColor);
         foreach (var c in dialogue.text)
         {
             showingText += c;
             text.text = showingText;
-            yield return new WaitForSeconds(1f / (5 * dialogue.textSpeed));
+            yield return new WaitForSeconds(1f / (10 * dialogue.textSpeed));
         }
         WaitForNext = true;
     }
+
+
 }

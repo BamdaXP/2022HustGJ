@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Everybody gets in line! Everybody gets in line! Everybody gets in line!
   textSound: {fileID: 0}
-  textSpeed: 1
+  textSpeed: 5
   dialogueColor: {r: 1, g: 0, b: 0, a: 1}
