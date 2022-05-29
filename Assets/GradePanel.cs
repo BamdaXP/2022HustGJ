@@ -20,8 +20,8 @@ public class GradePanel : MonoBehaviour
 
     IEnumerator Animate()
     {
-        finish.transform.DOScale(1.2f, Random.Range(1, 5)).SetLoops(-1, LoopType.Yoyo);
-        var words = "     今天共检测___位居民\n<size=108>满意率100%</size>\n感谢您为居民健康做出的贡献！";
+        finish.transform.DOScale(1.25f, 2f).SetLoops(-1, LoopType.Yoyo);
+        var words = "    今天共检测___位居民\n  <size=108>满意率100%</size>\n感谢您为居民健康做出的贡献！";
         var type = "";
         for (int i = 0; i< words.Length; i++)
         {
