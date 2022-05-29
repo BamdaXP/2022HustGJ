@@ -6,16 +6,17 @@ using UnityEngine.UI;
 public enum PlayerState
 {
     Ready,
-    Dialog,
+    Dialog1,
     Stage1,
     Stage2,
+    Dialog2,
     Transition,
 }
 public class LevelController : Singleton<LevelController>
 {
     public AnimalManager manager;
 
-    public DoctorArmMove doctor;
+    public DoctorMove doctor;
 
     public PlayerState PlayerState;
 
@@ -40,7 +41,7 @@ public class LevelController : Singleton<LevelController>
             case PlayerState.Ready:
                 StartCoroutine(GetReady());
                 break;
-            case PlayerState.Dialog:
+            case PlayerState.Dialog1:
                 //待更改
                 SwitchGameState(PlayerState.Stage1);
                 break;
@@ -60,13 +61,13 @@ public class LevelController : Singleton<LevelController>
     {
         manager.Proceed();
         yield return new WaitForSeconds(3.1f);
-        SwitchGameState(PlayerState.Dialog);
+        SwitchGameState(PlayerState.Dialog1);
     }
 
     private IEnumerator DoStage1()
     {
         // 待更改
-        firstStage = Instantiate<GameObject>(firstStagePrefab);
+        firstStage = Instantiate<GameObject>(firstStagePrefab, null, true);
         doctor.heightSource = firstStage.GetComponent<VerticalCheck>();
         yield return null;
     }
@@ -76,10 +77,11 @@ public class LevelController : Singleton<LevelController>
         // 待更改
         doctor.heightSource = null;
         Destroy(firstStage);
-        secondStage = Instantiate<GameObject>(secondStagePrefab);
+        secondStage = Instantiate<GameObject>(secondStagePrefab, null, true);
         doctor.depthSource = secondStage.GetComponent<L_or_R>();
-        yield return new WaitForSeconds(2f);
-        SwitchGameState(PlayerState.Transition);
+        //yield return new WaitForSeconds(2f);
+        //SwitchGameState(PlayerState.Transition);
+        yield return null;
     }
 
     private IEnumerator DoTransition()
@@ -87,7 +89,8 @@ public class LevelController : Singleton<LevelController>
         // 待更改
         doctor.depthSource = null;
         Destroy(secondStage);
+        doctor.Init();
+        yield return new WaitForSeconds(2f);
         SwitchGameState(PlayerState.Ready);
-        yield return null;
     }
 }

@@ -23,12 +23,14 @@ MonoBehaviour:
   - -2
   radTime: []
   radSpeed: []
+  sceTime: []
+  sceSpeed: []
   keepTime: 10
   maxTime: 30
   slideStart_L: {x: 8, y: 6.2, z: 0}
   slideStart_R: {x: 9, y: 6.2, z: 0}
-  - 2
+  hitDis: 0
   prelogs: []
   dialogues: []
-  maskSprite: {fileID: 21300000, guid: abe14fea08b6cf34f980e49859026a92, type: 3}
-  aSprite: {fileID: 21300000, guid: 0034ecb82b59cc94182b92dfe4e5fca2, type: 3}
+  maskSprite: {fileID: 21300000, guid: c60c8f45e2a0dd54d82579c32a899f23, type: 3}
+  aSprite: {fileID: 21300000, guid: 67efb247a1a57114f9a826205a055a30, type: 3}

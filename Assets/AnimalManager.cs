@@ -32,6 +32,7 @@ public class AnimalManager : MonoBehaviour
         if (endAnimal != null)
         {
             endAnimal.ChangeSprite(true);
+            endAnimal.GetComponent<SpriteRenderer>().sortingLayerName = "CheckedAnimal";
             endAnimal.transform.DOMove(endPoint.position, 3);
         }
         
