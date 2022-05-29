@@ -7,6 +7,7 @@ public class TitleScreen : MonoBehaviour
     public void StartGame()
     {
         SceneLoader.Instance.LoadSceneAsync("GameScene");
+        SceneLoader.Instance.UnloadSceneAsync("TitleScene");
         AudioManager.Instance.PlaySE("Button");
     }
 

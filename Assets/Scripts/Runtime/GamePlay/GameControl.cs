@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animal : MonoBehaviour
+public class GameControle : MonoBehaviour
 {
-    public Animaldata data;
     // Start is called before the first frame update
     void Start()
     {
