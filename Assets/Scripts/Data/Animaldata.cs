@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Animal", menuName = "Animal")]
-public class AnimalData : ScriptableObject
+public class Animaldata : ScriptableObject
 {
     //µÚÒ»¹Ø
     public float height;
@@ -21,12 +21,4 @@ public class AnimalData : ScriptableObject
         public float secMove;
     }
     public level[] lev;
-
-    
-
-    public List<Dialogue> prelogs = new List<Dialogue>();
-    public List<Dialogue> dialogues = new List<Dialogue>();
-
-    public Sprite maskSprite;
-    public Sprite aSprite;
 }
