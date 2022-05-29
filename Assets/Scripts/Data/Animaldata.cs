@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Animal", menuName = "Animal")]
-public class Animaldata : ScriptableObject
+public class AnimalData : ScriptableObject
 {
-    //µÚÒ»¹Ø
+    //ï¿½ï¿½Ò»ï¿½ï¿½
     public float height;
     public float heightRange;
     public float heightTime;
-    //µÚ¶þ¹Ø
-    //ÅÐ¶¨Çø¼ä
+    //ï¿½Ú¶ï¿½ï¿½ï¿½
+    //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
     public float[] change;
     public float[] fir;
     public float[] sec;
-    //¿ØÖÆÆ÷ËÙ¶È
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
     public float[] radTime;
     public float[] radSpeed;
-    //³¡¾°ËÙ¶È
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
     public float[] sceTime;
     public float[] sceSpeed;
     public float keepTime;
@@ -25,5 +25,11 @@ public class Animaldata : ScriptableObject
     public Vector3 slideStart_L;
     public Vector3 slideStart_R;
     public float hitDis;
-    //wait×´Ì¬µÄ¶¯»­
+    //wait×´Ì¬ï¿½Ä¶ï¿½ï¿½ï¿½
+
+    public List<Dialogue> prelogs = new List<Dialogue>();
+    public List<Dialogue> dialogues = new List<Dialogue>();
+
+    public Sprite maskSprite;
+    public Sprite aSprite;
 }

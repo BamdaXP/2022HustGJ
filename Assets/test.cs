@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
+    public AnimalManager manager;
+
+    public DialoguePanel p;
     public Dialogue d1;
     public Dialogue d2;
-    public DialoguePanel dialoguePanel;
     // Start is called before the first frame update
     void Start()
     {
-        dialoguePanel.AddDialogue(d1);
-        dialoguePanel.AddDialogue(d2);
+        p.AddDialogue(d1);
+        p.AddDialogue(d2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            manager.Proceed();
+        }
     }
 }

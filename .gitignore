@@ -4,7 +4,6 @@
 .vsconfig
 Temp/
 Logs/
-Packages/
 Library/
 *.csproj
 *.sln
