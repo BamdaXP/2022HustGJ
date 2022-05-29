@@ -9,16 +9,19 @@ public class DialoguePanel : MonoBehaviour
     public Image panelImage;
 
 
+    [SerializeField]
     public bool IsDialoging { get; private set; }
-    public bool WaitForNext { get; private set; }
+    [SerializeField]
+    public bool IsWaitingForNext { get; private set; }
+    [SerializeField]
     public Dialogue DialogingDialogue{ get; private set; }
 
 public List<Dialogue> dialogueQueue;
 
     private Window _window;
-    private void Awake()
+    private void Start()
     {
-        _window = GetComponent<Window>();
+        _window = text.GetComponent<Window>();
         dialogueQueue = new List<Dialogue>();
     }
     public void AddDialogue(Dialogue dialogue)
@@ -40,22 +43,22 @@ public List<Dialogue> dialogueQueue;
         {
             IsDialoging = true;
             text.text = "";
-            SetColor(Color.white);
             _window.Show();
         }
         else if (dialogueQueue.Count == 0 && IsDialoging)
         {
             IsDialoging = false;
             _window.Hide();
+            SetColor(Color.white);
         }
 
-        if (WaitForNext)
+        if (IsWaitingForNext)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 dialogueQueue.RemoveAt(0);
                 DialogingDialogue = null;
-                WaitForNext = false;
+                IsWaitingForNext = false;
             }
         }
         
@@ -69,14 +72,18 @@ public List<Dialogue> dialogueQueue;
     {
         string showingText = "";
         SetColor(dialogue.dialogueColor);
+        if (dialogue.textSound != null)
+        {
+            AudioManager.Instance.PlaySE(dialogue.textSound);
+        }
         foreach (var c in dialogue.text)
         {
             AudioManager.Instance.PlaySE("Type");
             showingText += c;
             text.text = showingText;
-            yield return new WaitForSeconds(1f / (10 * dialogue.textSpeed));
+            yield return new WaitForSeconds(1f / (6 * dialogue.textSpeed));
         }
-        WaitForNext = true;
+        IsWaitingForNext = true;
     }
 
 

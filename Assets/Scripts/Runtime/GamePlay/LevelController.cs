@@ -14,7 +14,10 @@ public enum PlayerState
 }
 public class LevelController : Singleton<LevelController>
 {
-    public DoctorMove doctor;
+    public AnimalManager animalManager;
+    public DialoguePanel dialoguePanel;
+
+    public Doctor doctor;
 
     public PlayerState PlayerState;
 
@@ -24,14 +27,68 @@ public class LevelController : Singleton<LevelController>
     public GameObject firstStage;
     public GameObject secondStage;
 
+    public Image CG;
+    public List<Sprite> preCGs;
+    public List<Sprite> postCGs;
+
     private void Start()
     {
-        AnimalManager.Instance.Proceed();
-        AnimalManager.Instance.Proceed();
-        doctor.TurnAround(true);
+        doctor.TurnAround(false);
+        StartCoroutine(PreCG());
+    }
+    private bool end = false;
+    private void Update()
+    {
+        if (animalManager.IsEmpty() && !end)
+        {
+            //测完了
+            StopAllCoroutines();
+            StartCoroutine(PostCG());
+            end = true;
+        }
+    }
+    private IEnumerator PreCG()
+    {
+        if (preCGs.Count > 0)
+        {
+            CG.gameObject.GetComponent<Window>().Show();
+            foreach (var cg in preCGs)
+            {
+                CG.sprite = cg;
+                yield return new WaitForSeconds(3f);
+                while (!Input.GetMouseButton(0))
+                {
+                    yield return null;
+                }
+            }
+            CG.gameObject.GetComponent<Window>().Hide();
+            yield return new WaitForSeconds(3f);
+
+        }
+
         SwitchGameState(PlayerState.Ready);
     }
 
+    private IEnumerator PostCG()
+    {
+        if (postCGs.Count > 0)
+        {
+            CG.gameObject.GetComponent<Window>().Show();
+            foreach (var cg in postCGs)
+            {
+                CG.sprite = cg;
+                yield return new WaitForSeconds(3f);
+                while (!Input.GetMouseButton(0))
+                {
+                    yield return null;
+                }
+            }
+            CG.gameObject.GetComponent<Window>().Hide();
+            yield return new WaitForSeconds(3f);
+        }
+        SceneLoader.Instance.UnloadSceneAsync("GameSceneTemp");
+        SceneLoader.Instance.LoadSceneAsync("GradeScene");
+    }
     public void SwitchGameState(PlayerState state)
     {
         PlayerState = state;
@@ -60,51 +117,112 @@ public class LevelController : Singleton<LevelController>
 
     private IEnumerator GetReady()
     {
-        AnimalManager.Instance.Proceed();
-        yield return new WaitForSeconds(3.1f);
+        if (animalManager.datas.Count != 0)
+        {
+            while (animalManager.testAnimal == null)
+            {
+                animalManager.Proceed();
+                yield return null;
+            }
+        }
+        
+        
+
+        yield return new WaitForSeconds(3f);
+        
+        
         SwitchGameState(PlayerState.Dialog1);
     }
 
     private IEnumerator DoDialog1()
     {
         doctor.TurnAround(true);
-        //AnimalManager.Instance;
+        var a = animalManager.testAnimal;
+        if (a != null)
+        {
+            foreach (var pd in a.data.prelogs)
+            {
+                dialoguePanel.AddDialogue(pd);
+                yield return null;
+            }
+        }
+        while (dialoguePanel.IsDialoging)
+        {
+            yield return null;
+        }
+        SwitchGameState(PlayerState.Stage1);
         yield return null;
     }
 
     private IEnumerator DoStage1()
     {
+        animalManager.testAnimal.ChangeSprite(false);
+        /*
         // 待更改
         firstStage = Instantiate<GameObject>(firstStagePrefab, null, true);
-        doctor.heightSource = firstStage.GetComponent<VerticalCheck>();
+        doctor.heightSource = firstStage.GetComponent<Stage1>();
+        */
+        var a = animalManager.testAnimal;
+        if (a != null)
+        {
+            print("stage 1 for 3 s");
+            yield return new WaitForSeconds(0.3f);
+        }
+        SwitchGameState(PlayerState.Stage2);
         yield return null;
+        
     }
 
     private IEnumerator DoStage2()
     {
-        // 待更改
         doctor.heightSource = null;
+        /*
+        // 待更改
         Destroy(firstStage);
         secondStage = Instantiate<GameObject>(secondStagePrefab, null, true);
-        doctor.depthSource = secondStage.GetComponent<L_or_R>();
+        doctor.depthSource = secondStage.GetComponent<Stage2>();
         //yield return new WaitForSeconds(2f);
-        //SwitchGameState(PlayerState.Transition);
+        */
+        var a = animalManager.testAnimal;
+        if (a != null)
+        {
+            print("stage 2 for 3 s");
+            yield return new WaitForSeconds(0.3f);
+        }
+        SwitchGameState(PlayerState.Dialog2);
         yield return null;
     }
 
     private IEnumerator DoDialog2()
     {
-
+        animalManager.testAnimal.ChangeSprite(true);
+        doctor.TurnAround(false);
+        doctor.depthSource = null;
+        //Destroy(secondStage);
+        doctor.Init();
+        var a = animalManager.testAnimal;
+        if (a != null)
+        {
+            foreach (var pd in a.data.postlogs)
+            {
+                dialoguePanel.AddDialogue(pd);
+                yield return null;
+            }
+        }
+        while (dialoguePanel.IsDialoging)
+        {
+            yield return null;
+        }
+        SwitchGameState(PlayerState.Transition);
         yield return null;
     }
 
     private IEnumerator DoTransition()
     {
         // 待更改
-        doctor.depthSource = null;
-        Destroy(secondStage);
-        doctor.Init();
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(3f);
+        animalManager.Proceed();
         SwitchGameState(PlayerState.Ready);
+        yield return null;
     }
 }

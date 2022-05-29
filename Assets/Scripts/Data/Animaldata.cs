@@ -28,7 +28,7 @@ public class AnimalData : ScriptableObject
     //wait״̬�Ķ���
 
     public List<Dialogue> prelogs = new List<Dialogue>();
-    public List<Dialogue> dialogues = new List<Dialogue>();
+    public List<Dialogue> postlogs = new List<Dialogue>();
 
     public Sprite maskSprite;
     public Sprite aSprite;

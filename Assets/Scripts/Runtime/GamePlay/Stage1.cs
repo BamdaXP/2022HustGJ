@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VerticalCheck : MonoBehaviour
+public class Stage1 : MonoBehaviour
 {
     [SerializeField]
     private Transform m_redFillTransform;
@@ -84,7 +84,7 @@ public class VerticalCheck : MonoBehaviour
     private void MoveAndCheck()
     {
         m_timeSlider.value = 1 - m_pressTimer / m_maxPressTime;
-        SetRedFill();
+        m_redFillTransform.localScale = new Vector3(m_redFillTransform.localScale.x, m_currentHeight, m_redFillTransform.localScale.z);
 
         if (m_roundEnd) return;
 
@@ -170,9 +170,4 @@ public class VerticalCheck : MonoBehaviour
 
     private float m_heightMultiplier = 5.2f;
     private float m_scaleMultiplier = 6.2f;
-    private void SetRedFill()
-    {
-        m_redFillTransform.localPosition = new Vector2(m_redFillTransform.localPosition.x, m_currentHeight * m_heightMultiplier);
-        m_redFillTransform.localScale = new Vector2(m_redFillTransform.localScale.x, m_currentHeight * m_scaleMultiplier);
-    }
 }

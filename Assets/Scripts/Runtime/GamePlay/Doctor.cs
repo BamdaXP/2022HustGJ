@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoctorMove : MonoBehaviour
+public class Doctor : MonoBehaviour
 {
     [HideInInspector]
-    public L_or_R depthSource;
+    public Stage2 depthSource;
     [HideInInspector]
-    public VerticalCheck heightSource;
+    public Stage1 heightSource;
 
     public SpriteRenderer[] armSRs;
     public SpriteRenderer doctorSR;

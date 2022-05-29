@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class AnimalManager : Singleton<AnimalManager>
+public class AnimalManager : MonoBehaviour
 {
     public List<AnimalData> datas;
     //public List<Animal> animals;
@@ -34,22 +34,22 @@ public class AnimalManager : Singleton<AnimalManager>
             endAnimal.ChangeSprite(true);
             endAnimal.GetComponent<SpriteRenderer>().sortingLayerName = "CheckedAnimal";
             endAnimal.transform.DOMove(endPoint.position, 3);
-            endAnimal.transform.DOScaleY(1.05f, 0.3f).SetLoops(10, LoopType.Yoyo);
+            endAnimal.transform.DOScaleY(Random.Range(1.01f,1.05f) , 0.3f).SetLoops(10, LoopType.Yoyo);
         }
 
         testAnimal = backupAnimal;
         if (testAnimal != null)
         {
             testAnimal.transform.DOMove(testPoint.position, 3);
-            testAnimal.transform.DOScaleY(1.05f, 0.3f).SetLoops(10, LoopType.Yoyo);
-            StartCoroutine(SetSpriteAfterTime(testAnimal, false, 3));
+            testAnimal.transform.DOScaleY(Random.Range(1.01f, 1.05f), 0.3f).SetLoops(10, LoopType.Yoyo);
+            //StartCoroutine(SetSpriteAfterTime(testAnimal, false, 3));
         }
 
         backupAnimal = initAnimal;
         if (backupAnimal != null)
         {
             backupAnimal.transform.DOMove(backupPoint.position, 3);
-            backupAnimal.transform.DOScaleY(1.05f, 0.3f).SetLoops(10, LoopType.Yoyo);
+            backupAnimal.transform.DOScaleY(Random.Range(1.01f, 1.05f), 0.3f).SetLoops(10, LoopType.Yoyo);
         }
 
         if (datas.Count > 0)
@@ -65,10 +65,9 @@ public class AnimalManager : Singleton<AnimalManager>
         }
     }
 
-    private IEnumerator SetSpriteAfterTime(Animal animal, bool mask, float time)
+    public bool IsEmpty()
     {
-        yield return new WaitForSeconds(time);
-        animal.ChangeSprite(mask);
+        return datas.Count == 0 && initAnimal == null && backupAnimal == null && testAnimal == null;
     }
 }
 

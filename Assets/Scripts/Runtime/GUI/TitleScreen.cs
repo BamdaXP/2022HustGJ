@@ -16,7 +16,8 @@ public class TitleScreen : MonoBehaviour
     }
     public void StartStroyGame()
     {
-        SceneLoader.Instance.LoadSceneAsync("GameScene");
+        print("load game");
+        SceneLoader.Instance.LoadSceneAsync("GameSceneTemp");
         SceneLoader.Instance.UnloadSceneAsync("TitleScene");
         AudioManager.Instance.PlaySE("Button3");
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class L_or_R : MonoBehaviour
+public class Stage2 : MonoBehaviour
 {
     public GameObject stripe;//最下面的长条
     public GameObject slide;//控制区间的边界(左和右)

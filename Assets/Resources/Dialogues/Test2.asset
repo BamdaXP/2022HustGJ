@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d17a74b0e6b654ea5eeaecc781cff8, type: 3}
   m_Name: Test2
   m_EditorClassIdentifier: 
-  text: Everybody gets in line! Everybody gets in line! Everybody gets in line!
+  text: "\u6D4B\u540E\u5BF9\u8BDD\u3002\u3002\u3002"
   textSound: {fileID: 0}
-  textSpeed: 5
+  textSpeed: 2
   dialogueColor: {r: 1, g: 0, b: 0, a: 1}

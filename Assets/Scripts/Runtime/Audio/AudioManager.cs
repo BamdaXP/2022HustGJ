@@ -48,7 +48,19 @@ public class AudioManager : Singleton<AudioManager>
         source.volume = volume;
         source.Play();
     }
-
+    public void PlaySE(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null)
+        {
+            Debug.LogWarning($"SE {clip} is null!");
+            return;
+        }
+        var source = SESources.gameObject.AddComponent<AudioSource>();
+        source.clip = clip;
+        source.loop = false;
+        source.volume = volume;
+        source.Play();
+    }
     private void Update()
     {
         foreach (var source in SESources.GetComponents<AudioSource>())

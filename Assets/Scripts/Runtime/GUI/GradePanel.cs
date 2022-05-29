@@ -10,7 +10,9 @@ public class GradePanel : MonoBehaviour
     public Transform finish;
     public Transform nextButton;
     public Transform titleButton;
-    public TMPro.TMP_Text text;
+    public TMPro.TMP_Text text1;
+    public TMPro.TMP_Text text2;
+    public TMPro.TMP_Text text3;
 
     // Start is called before the first frame update
     void Start()
@@ -22,35 +24,35 @@ public class GradePanel : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         finish.transform.DOScale(1.25f, 2f).SetLoops(-1, LoopType.Yoyo);
-        var words = "    今天共检测___位居民\n  <size=108>满意率100%</size>\n感谢您为居民健康做出的贡献！";
+        var words1 = "    今天共检测12位居民";
+        var words2 = "  满意率100%";
+        var words3 = "感谢您为居民健康做出的贡献！";
         var type = "";
-        for (int i = 0; i< words.Length; i++)
+        foreach (var c in words1)
         {
-            AudioManager.Instance.PlaySE("Type");
-            var c = "";
-            c += words[i];
-            if (c == "<")
-            {
-                int j = 1;
-                while (words[i + j] != '>')
-                {
-                    c += words[i + j];
-                    j += 1;
-                }
-                i += j-1;
-            }
-            
             type += c;
-            text.text = type;
+            text1.text = type;
+            AudioManager.Instance.PlaySE("Type");
             yield return new WaitForSeconds(0.1f);
         }
-        /*
-        foreach (var c in words)
+        type = "";
+        foreach (var c in words2)
         {
             type += c;
-            text.text = type;
-            yield return new WaitForSeconds(0.05f);
-        }*/
+            text2.text = type;
+            AudioManager.Instance.PlaySE("Type");
+            yield return new WaitForSeconds(0.1f);
+        }
+        type = "";
+        foreach (var c in words3)
+        {
+            type += c;
+            text3.text = type;
+            AudioManager.Instance.PlaySE("Type");
+            yield return new WaitForSeconds(0.1f);
+        }
+
+
         yield return new WaitForSeconds(1f);
         //finish.transform.DOLocalRotate(new Vector3(0f,0f,30f), Random.Range(1, 5)).SetLoops(-1,LoopType.Yoyo);
         var seq = DOTween.Sequence();
@@ -69,12 +71,14 @@ public class GradePanel : MonoBehaviour
     }
     public void ToTitle()
     {
+        AudioManager.Instance.PlaySE("Button2");
         SceneLoader.Instance.LoadSceneAsync("TitleScene");
         SceneLoader.Instance.UnloadSceneAsync("GradeScene");
     }
 
     public void Next()
     {
+        AudioManager.Instance.PlaySE("Button2");
         SceneLoader.Instance.LoadSceneAsync("GameScene");
         SceneLoader.Instance.UnloadSceneAsync("GradeScene");
     }

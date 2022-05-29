@@ -8,8 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2338548770330441998}
+  - component: {fileID: 1747682011746177759}
   - component: {fileID: 7815886871482073312}
+  - component: {fileID: 6860380732525247600}
+  - component: {fileID: 5778261087492576241}
   m_Layer: 0
   m_Name: SecondStage
   m_TagString: Untagged
@@ -17,14 +19,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2338548770330441998
-Transform:
+--- !u!224 &1747682011746177759
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7451574742599386917}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33,6 +35,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -960, y: -540}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7815886871482073312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,12 +65,51 @@ MonoBehaviour:
   speed: 4
   distance: 0
   score: 0
+--- !u!225 &6860380732525247600
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451574742599386917}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &5778261087492576241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451574742599386917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc5fcbede992784a946e3612a4a8560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAnimating: 0
+  options:
+    duration: 0.5
+    ease: 7
+    fade: 1
+    alphaOnShow: 1
+    alphaOnHide: 0
+    scale: 0
+    scaleOnShow: {x: 0, y: 0, z: 0}
+    scaleOnHide: {x: 0, y: 0, z: 0}
+    move: 0
+    posOnShow: {x: 0, y: 0, z: 0}
+    posOnHide: {x: 0, y: 0, z: 0}
+  _showOnLoad: 0
+  windowName: SecondStage
 --- !u!1001 &191262205522518754
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2338548770330441998}
+    m_TransformParent: {fileID: 1747682011746177759}
     m_Modifications:
     - target: {fileID: 4943930856871871349, guid: 3b7cdbf85262f8548866a87556a69331, type: 3}
       propertyPath: m_SortingOrder
