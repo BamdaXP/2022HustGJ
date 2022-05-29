@@ -42,3 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 4130521877
+    locked: 0
+  - name: Doctor
+    uniqueID: 1599903667
+    locked: 0
+  - name: Animal
+    uniqueID: 286957543
+    locked: 0
+  - name: SlideUI
+    uniqueID: 837468563
+    locked: 0

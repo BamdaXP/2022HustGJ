@@ -6,21 +6,16 @@ using UnityEngine.UI;
 
 public class VerticalCheck : MonoBehaviour
 {
-    private float m_maxUpperLimit = 4f;
-    private float m_maxLowerLimit = -4f;
-    private float m_maxUpperCenter = 3.6f;
-    private float m_maxLowerCenter = -3.6f;
-    private Transform upperBound;
-    private Transform lowerBound;
+    [SerializeField]
+    private Transform m_redFillTransform;
+    [SerializeField]
+    private Transform m_checkAreaTransform;
 
+    private float m_currentHeight;
     [SerializeField]
     private float m_height = 0.5f;
     [SerializeField]
     private float m_heightRange = 0.2f;
-    [SerializeField]
-    private Transform m_heightRangeTransform;
-    private float m_upperLimit;
-    private float m_lowerLimit;
 
     private float m_velocity;
     //[SerializeField]
@@ -41,26 +36,41 @@ public class VerticalCheck : MonoBehaviour
     private float m_maxPressTime = 1f;
     [SerializeField]
     private Slider m_timeSlider;
+    private float m_score;
+
+    public float CurrentHeight
+    {
+        get { return m_currentHeight; }
+    }
+
+    public bool Finished
+    {
+        get { return m_finished; }
+    }
+
+    public float Score
+    {
+        get { return m_score; }
+    }
 
     private void Start()
     {
-        upperBound = transform.Find("UpperBound");
-        lowerBound = transform.Find("LowerBound");
         Init();
     }
 
-    private float scaleProp = 50f;
     public void Init()
     {
-        m_upperLimit = Mathf.Lerp(m_maxLowerLimit, m_maxUpperLimit, m_height + m_heightRange / 2);
-        m_lowerLimit = Mathf.Lerp(m_maxLowerLimit, m_maxUpperLimit, m_height - m_heightRange / 2);
-        m_heightRangeTransform.position = new Vector2(m_heightRangeTransform.position.x, Mathf.Lerp(m_maxLowerLimit, m_maxUpperLimit, m_height));
-        m_heightRangeTransform.localScale = new Vector2(m_heightRangeTransform.localScale.x, m_heightRange * scaleProp);
+        m_checkAreaTransform.localPosition = new Vector2
+            (m_checkAreaTransform.localPosition.x, m_height * m_heightMultiplier * 2);
+        m_checkAreaTransform.localScale = new Vector2
+            (m_checkAreaTransform.localScale.x, m_heightRange * m_scaleMultiplier);
+        m_currentHeight = 0f;
         m_velocity = m_aimVelocity = 0f;
         m_roundEnd = false;
         m_finished = false;
         m_canControl = true;
         m_pressTimer = 0f;
+        m_score = 0f;
     }
 
     private void Update()
@@ -73,7 +83,9 @@ public class VerticalCheck : MonoBehaviour
 
     private void MoveAndCheck()
     {
-        m_timeSlider.value = m_pressTimer / m_maxPressTime;
+        m_timeSlider.value = 1 - m_pressTimer / m_maxPressTime;
+        SetRedFill();
+
         if (m_roundEnd) return;
 
         // ¼üÅÌ
@@ -92,7 +104,7 @@ public class VerticalCheck : MonoBehaviour
         else if (Input.GetMouseButton(0) && m_canControl)
         {
             m_aimVelocity = Input.GetAxisRaw("Mouse Y") * m_mouseMaxVelocity;
-            Debug.Log("Mouse Y : " + Input.GetAxisRaw("Mouse Y"));
+            //Debug.Log("Mouse Y : " + Input.GetAxisRaw("Mouse Y"));
             //Debug.Log("Aim Velocity : " + m_aimVelocity);
             m_pressTimer += Time.deltaTime;
             if (m_pressTimer > m_maxPressTime)
@@ -123,23 +135,22 @@ public class VerticalCheck : MonoBehaviour
             {
                 Debug.Log("EndRound");
                 m_roundEnd = true;
-                transform.DOMoveY(m_maxLowerCenter, 0.5f);
                 DOTween.To(() => m_pressTimer, x => m_pressTimer = x, 0, 0.5f);
+                DOTween.To(() => m_currentHeight, x => m_currentHeight = x, 0, 0.5f);
                 Invoke("CanControl", 0.5f);
             }
         }
-        float aimY = transform.position.y + m_velocity * Time.deltaTime;
-        if (aimY > m_maxUpperCenter)
+        m_currentHeight += m_velocity * Time.deltaTime;
+        if (m_currentHeight > 1f)
         {
-            aimY = m_maxUpperCenter;
+            m_currentHeight = 1f;
             m_velocity = m_aimVelocity = 0f;
         }
-        else if (aimY < m_maxLowerCenter)
+        else if (m_currentHeight < 0f)
         {
-            aimY = m_maxLowerCenter;
+            m_currentHeight = 0;
             m_velocity = m_aimVelocity = 0f;
         }
-        transform.position = new Vector2(transform.position.x, aimY);
     }
 
     private void CanControl()
@@ -150,6 +161,17 @@ public class VerticalCheck : MonoBehaviour
 
     private bool IsInRange()
     {
-        return upperBound.position.y <= m_upperLimit && lowerBound.position.y >= m_lowerLimit;
+        if (m_currentHeight > m_height + m_heightRange / 2 || m_currentHeight < m_height - m_heightRange / 2)
+            return false;
+        m_score = 1f - (m_currentHeight - m_height) / m_heightRange / 2;
+        return true;
+    }
+
+    private float m_heightMultiplier = 5.2f;
+    private float m_scaleMultiplier = 6.2f;
+    private void SetRedFill()
+    {
+        m_redFillTransform.localPosition = new Vector2(m_redFillTransform.localPosition.x, m_currentHeight * m_heightMultiplier);
+        m_redFillTransform.localScale = new Vector2(m_redFillTransform.localScale.x, m_currentHeight * m_scaleMultiplier);
     }
 }
