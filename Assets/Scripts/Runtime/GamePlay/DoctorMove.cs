@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class DoctorMove : MonoBehaviour
 {
+    [HideInInspector]
     public L_or_R depthSource;
+    [HideInInspector]
     public VerticalCheck heightSource;
 
-    public Sprite testSprite;
+    public SpriteRenderer[] armSRs;
+    public SpriteRenderer doctorSR;
+    public Sprite testingSprite;
     public Sprite turnAroundSprite;
 
     private float leftPos = -2.8f;
@@ -16,7 +20,7 @@ public class DoctorMove : MonoBehaviour
     private float downPos = -1f;
 
     [SerializeField]
-    public float moveSpeed = 6f;
+    private float moveSpeed = 6f;
 
     private float currentHeight;
     private float currentDepth;
@@ -56,5 +60,17 @@ public class DoctorMove : MonoBehaviour
         handRigidbody.angularVelocity = arm1Rigidbody.angularVelocity = arm2Rigidbody.angularVelocity = 0f;
 
         //Debug.Log(handRigidbody.position);
+    }
+
+    public void TurnAround(bool towardsRight)
+    {
+        foreach (var SR in armSRs)
+        {
+            if (towardsRight)
+                SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 1f);
+            else
+                SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 0f);
+        }
+        doctorSR.sprite = towardsRight ? testingSprite : turnAroundSprite;
     }
 }

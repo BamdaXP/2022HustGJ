@@ -14,8 +14,6 @@ public enum PlayerState
 }
 public class LevelController : Singleton<LevelController>
 {
-    public AnimalManager manager;
-
     public DoctorMove doctor;
 
     public PlayerState PlayerState;
@@ -28,8 +26,9 @@ public class LevelController : Singleton<LevelController>
 
     private void Start()
     {
-        manager.Proceed();
-        manager.Proceed();
+        AnimalManager.Instance.Proceed();
+        AnimalManager.Instance.Proceed();
+        doctor.TurnAround(true);
         SwitchGameState(PlayerState.Ready);
     }
 
@@ -42,14 +41,16 @@ public class LevelController : Singleton<LevelController>
                 StartCoroutine(GetReady());
                 break;
             case PlayerState.Dialog1:
-                //´ý¸ü¸Ä
-                SwitchGameState(PlayerState.Stage1);
+                StartCoroutine(DoDialog1());
                 break;
             case PlayerState.Stage1:
                 StartCoroutine(DoStage1());
                 break;
             case PlayerState.Stage2:
                 StartCoroutine(DoStage2());
+                break;
+            case PlayerState.Dialog2:
+                StartCoroutine(DoDialog2());
                 break;
             case PlayerState.Transition:
                 StartCoroutine(DoTransition());
@@ -59,9 +60,16 @@ public class LevelController : Singleton<LevelController>
 
     private IEnumerator GetReady()
     {
-        manager.Proceed();
+        AnimalManager.Instance.Proceed();
         yield return new WaitForSeconds(3.1f);
         SwitchGameState(PlayerState.Dialog1);
+    }
+
+    private IEnumerator DoDialog1()
+    {
+        doctor.TurnAround(true);
+        //AnimalManager.Instance;
+        yield return null;
     }
 
     private IEnumerator DoStage1()
@@ -81,6 +89,12 @@ public class LevelController : Singleton<LevelController>
         doctor.depthSource = secondStage.GetComponent<L_or_R>();
         //yield return new WaitForSeconds(2f);
         //SwitchGameState(PlayerState.Transition);
+        yield return null;
+    }
+
+    private IEnumerator DoDialog2()
+    {
+
         yield return null;
     }
 

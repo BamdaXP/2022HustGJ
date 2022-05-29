@@ -490,7 +490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Persistent: 0
-  manager: {fileID: 514503476}
   doctor: {fileID: 429597898}
   PlayerState: 0
   firstStagePrefab: {fileID: 6830975815468180828, guid: dbe2cc17e8cc83c428b532d667a45cde, type: 3}
@@ -578,8 +577,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depthSource: {fileID: 0}
   heightSource: {fileID: 0}
-  testSprite: {fileID: 0}
-  turnAroundSprite: {fileID: 0}
+  armSRs:
+  - {fileID: 1562318514}
+  - {fileID: 1979914714}
+  - {fileID: 768099265}
+  doctorSR: {fileID: 500166095}
+  testingSprite: {fileID: 21300000, guid: 1b1c25cb1e1f239478256c82f29a691e, type: 3}
+  turnAroundSprite: {fileID: 21300000, guid: 2b8d31c116243514e89bb3f6ef1b052d, type: 3}
   moveSpeed: 6
 --- !u!4 &429597899
 Transform:
@@ -728,6 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8500423987f8742a82d53df1e7f20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Persistent: 0
   datas:
   - {fileID: 11400000, guid: 0daf31a2fb8d59b41969a846dfbed3c4, type: 2}
   - {fileID: 11400000, guid: 0daf31a2fb8d59b41969a846dfbed3c4, type: 2}
@@ -1359,7 +1364,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -1.38, y: -1.18}
+  m_ConnectedAnchor: {x: -1.3800004, y: -1.18}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1634,7 +1639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552310625}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.39, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
