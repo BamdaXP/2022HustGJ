@@ -24,9 +24,8 @@ public class GradePanel : MonoBehaviour
         seq.Append(certification.transform.DOScale(1.1f, 0.2f));
         seq.Append(certification.transform.DOScale(0.9f, 0.1f));
         seq.Append(certification.transform.DOScale(1f, 0.15f));
-        seq.Append(nextButton.transform.DOLocalMoveY(-120, 1.5f));
-        seq.Append((titleButton.transform.DOLocalMoveY(-360, 1.5f)));
-
+        seq.Append(nextButton.transform.DOLocalMoveY(-170, 1.5f));
+        seq.Append((titleButton.transform.DOLocalMoveY(-340, 1.5f)));
         seq.Play();
     }
 
