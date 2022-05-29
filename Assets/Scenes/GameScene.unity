@@ -1999,6 +1999,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 514503476}
+  p: {fileID: 1951113810}
+  d1: {fileID: 11400000, guid: 416da8df25c82a442beb2e45a446d483, type: 2}
+  d2: {fileID: 11400000, guid: 70113448d34f8244b8ad3f9f8b47a37e, type: 2}
 --- !u!4 &1269657455
 Transform:
   m_ObjectHideFlags: 0
