@@ -58,11 +58,11 @@ public class L_or_R : MonoBehaviour
         isFinishSecStep = false;
         isEnter = false;
         isBulid = false;
-        pos.transform.position = far;
+        /*pos.transform.position = far;
         slide.SetActive(false);
         slide1.SetActive(false);
         slide2.SetActive(false);
-        stripe.SetActive(false);
+        stripe.SetActive(false);*/
         isMoving = false;
         isOver = false;
         isBack = false;
@@ -113,12 +113,12 @@ public class L_or_R : MonoBehaviour
     }
     void bulid()
     {
-        slide.SetActive(true);
+        /*slide.SetActive(true);
         slide1.SetActive(true); 
         slide2.SetActive(true);
         stripe.SetActive(true);
+        pos.transform.position = poi;*/
         isBulid = true;
-        pos.transform.position = poi;
         //
         thisAnimal = findTheNearest();
         //
@@ -176,7 +176,7 @@ public class L_or_R : MonoBehaviour
                 p++;
             }
         }
-        if (pos.transform.position.x > slide_start1.x&& pos.transform.position.x > 0 && !isEnter)
+        if (pos.transform.position.x > slide_start1.x && !isEnter)
         {
             isEnter = true;
         }
@@ -207,7 +207,7 @@ public class L_or_R : MonoBehaviour
                 {
                     isOver = true;
                     cd =1f;
-                    Debug.Log("°¡Í´");
+                   // Debug.Log("°¡Í´");
                     hit++;
                 }
                 else
@@ -250,7 +250,7 @@ public class L_or_R : MonoBehaviour
             isOver = false;
             u = 0;
             isBack = true;
-            Debug.Log("Ò¯ÈóÁË");
+            //Debug.Log("Ò¯ÈóÁË");
         }
         if (moveStartTime >= changetime && isMoving||isBack)
         {
@@ -280,13 +280,15 @@ public class L_or_R : MonoBehaviour
         isFinishFirStep = false;
         
         //Çå³ý³¡¾°
-        slide1.SetActive(false);
+        /*slide1.SetActive(false);
         slide2.SetActive(false);
         slide.SetActive(false);
         pos.transform.position = far;
-        stripe.SetActive(false);
+        stripe.SetActive(false);*/
+
         isBulid = false;
         isFinishSecStep = true;
+        LevelController.Instance.SwitchGameState(PlayerState.Transition);
     }
     void fail()
     {
