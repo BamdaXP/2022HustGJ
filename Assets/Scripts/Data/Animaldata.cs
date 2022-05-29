@@ -5,24 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Animal", menuName = "Animal")]
 public class AnimalData : ScriptableObject
 {
-    //╣зр╩╧ь
+    //О©╫О©╫р╩О©╫О©╫
     public float height;
     public float heightRange;
     public float heightTime;
-    //╣з╤Ч╧ь
+    //О©╫з╤О©╫О©╫О©╫
+    //О©╫п╤О©╫О©╫О©╫О©╫О©╫
     public float[] change;
     public float[] fir;
     public float[] sec;
-
-    public struct level
-    {
-        public float changeDuration;
-        public float firMove;
-        public float secMove;
-    }
-    public level[] lev;
-
-    
+    //О©╫О©╫О©╫О©╫О©╫О©╫О©╫ы╤О©╫
+    public float[] radTime;
+    public float[] radSpeed;
+    //О©╫О©╫О©╫О©╫О©╫ы╤О©╫
+    public float[] sceTime;
+    public float[] sceSpeed;
+    public float keepTime;
+    public float maxTime;
+    public Vector3 slideStart_L;
+    public Vector3 slideStart_R;
+    public float hitDis;
+    //waitв╢л╛О©╫д╤О©╫О©╫О©╫
 
     public List<Dialogue> prelogs = new List<Dialogue>();
     public List<Dialogue> dialogues = new List<Dialogue>();
