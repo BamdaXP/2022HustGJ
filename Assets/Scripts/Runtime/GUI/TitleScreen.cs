@@ -9,17 +9,24 @@ public class TitleScreen : MonoBehaviour
     private void Start()
     {
         var seq = DOTween.Sequence();
-        seq.Append(animals.transform.DOScaleY(1.05f,0.3f));
-        seq.Append(animals.transform.DOScaleY(1f, 0.1f));
+        seq.Append(animals.transform.DOScaleY(1.05f,0.6f));
+        seq.Append(animals.transform.DOScaleY(1f, 0.2f));
         seq.SetLoops(-1);
+        seq.Play();
     }
-    public void StartGame()
+    public void StartStroyGame()
     {
         SceneLoader.Instance.LoadSceneAsync("GameScene");
         SceneLoader.Instance.UnloadSceneAsync("TitleScene");
-        AudioManager.Instance.PlaySE("Button");
+        AudioManager.Instance.PlaySE("Button3");
     }
 
+    public void StartInfinteGame()
+    {
+        SceneLoader.Instance.LoadSceneAsync("GradeScene");
+        SceneLoader.Instance.UnloadSceneAsync("TitleScene");
+        AudioManager.Instance.PlaySE("Button3");
+    }
     public void QuitGame()
     {
         Application.Quit();

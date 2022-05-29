@@ -30,20 +30,28 @@ public class AnimalManager : MonoBehaviour
             Destroy(endAnimal.gameObject);
         endAnimal = testAnimal;
         if (endAnimal != null)
+        {
             endAnimal.transform.DOMove(endPoint.position, 3);
-
+            endAnimal.transform.DOScaleY(1.05f, 0.3f).SetLoops(10,LoopType.Yoyo);
+        }
+            
         
         testAnimal = backupAnimal;
         if (testAnimal != null)
         {
             testAnimal.transform.DOMove(testPoint.position, 3);
+            testAnimal.transform.DOScaleY(1.05f, 0.3f).SetLoops(10, LoopType.Yoyo);
         }
             
 
 
         backupAnimal = initAnimal;
         if (backupAnimal != null)
+        {
             backupAnimal.transform.DOMove(backupPoint.position, 3);
+            backupAnimal.transform.DOScaleY(1.05f, 0.3f).SetLoops(10, LoopType.Yoyo);
+        }
+            
 
         if (datas.Count > 0)
         {

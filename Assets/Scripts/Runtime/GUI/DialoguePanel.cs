@@ -71,6 +71,7 @@ public List<Dialogue> dialogueQueue;
         SetColor(dialogue.dialogueColor);
         foreach (var c in dialogue.text)
         {
+            AudioManager.Instance.PlaySE("Type");
             showingText += c;
             text.text = showingText;
             yield return new WaitForSeconds(1f / (10 * dialogue.textSpeed));

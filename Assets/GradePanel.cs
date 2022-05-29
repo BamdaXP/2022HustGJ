@@ -20,11 +20,13 @@ public class GradePanel : MonoBehaviour
 
     IEnumerator Animate()
     {
+        yield return new WaitForSeconds(2f);
         finish.transform.DOScale(1.25f, 2f).SetLoops(-1, LoopType.Yoyo);
         var words = "    今天共检测___位居民\n  <size=108>满意率100%</size>\n感谢您为居民健康做出的贡献！";
         var type = "";
         for (int i = 0; i< words.Length; i++)
         {
+            AudioManager.Instance.PlaySE("Type");
             var c = "";
             c += words[i];
             if (c == "<")
@@ -40,7 +42,7 @@ public class GradePanel : MonoBehaviour
             
             type += c;
             text.text = type;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
         }
         /*
         foreach (var c in words)
@@ -61,6 +63,9 @@ public class GradePanel : MonoBehaviour
         seq.Append(nextButton.transform.DOLocalMoveY(-170, 1.5f));
         seq.Append((titleButton.transform.DOLocalMoveY(-340, 1.5f)));
         seq.Play();
+
+        yield return new WaitForSeconds(2f);
+        AudioManager.Instance.PlaySE("Seal");
     }
     public void ToTitle()
     {
