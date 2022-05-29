@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22db1b9c933b00439245de0eddafda2, type: 3}
+  m_Name: Hippo
+  m_EditorClassIdentifier: 
+  height: 0
+  heightRange: 0
+  heightTime: 0
+  change:
+  - 2
+  fir:
+  - 1
+  sec:
+  - 2
+  prelogs: []
+  dialogues: []
+  maskSprite: {fileID: 21300000, guid: abe14fea08b6cf34f980e49859026a92, type: 3}
+  aSprite: {fileID: 21300000, guid: 0034ecb82b59cc94182b92dfe4e5fca2, type: 3}
