@@ -6,19 +6,17 @@ public class Animal : MonoBehaviour
 {
     public AnimalData data;
     public SpriteRenderer sr;
-    int j;
+
     // Start is called before the first frame update
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         sr.sprite = data.maskSprite;
     }
 
-    public void StartTest()
+    public void ChangeSprite(bool mask)
     {
-        sr.sprite = data.aSprite;
-    }
-    public void EndTest()
-    {
-        sr.sprite = data.maskSprite;
+        if (mask) sr.sprite = data.maskSprite;
+        else sr.sprite = data.aSprite;
     }
 }

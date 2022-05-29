@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+
 public class GameManager : Singleton<GameManager>
 {
     public enum GameState
     {
         Title,
-        First
+        InGame,
+        GameOver,
     }
+
+    public GameState gameState = GameState.Title;
     // Start is called before the first frame update
     void Start()
     {

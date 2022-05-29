@@ -129,6 +129,7 @@ public class VerticalCheck : MonoBehaviour
             {
                 m_finished = true;
                 Debug.Log("Excellent!");
+                LevelController.Instance.SwitchGameState(PlayerState.Stage2);
                 return;
             }
             else if (!m_canControl && !m_roundEnd)

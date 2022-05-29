@@ -30,20 +30,23 @@ public class AnimalManager : MonoBehaviour
             Destroy(endAnimal.gameObject);
         endAnimal = testAnimal;
         if (endAnimal != null)
+        {
+            endAnimal.ChangeSprite(true);
             endAnimal.transform.DOMove(endPoint.position, 3);
-
+        }
         
         testAnimal = backupAnimal;
         if (testAnimal != null)
         {
             testAnimal.transform.DOMove(testPoint.position, 3);
+            StartCoroutine(SetSpriteAfterTime(testAnimal, false, 3));
         }
-            
-
 
         backupAnimal = initAnimal;
         if (backupAnimal != null)
+        {
             backupAnimal.transform.DOMove(backupPoint.position, 3);
+        }
 
         if (datas.Count > 0)
         {
@@ -58,4 +61,9 @@ public class AnimalManager : MonoBehaviour
         }
     }
     
+    private IEnumerator SetSpriteAfterTime(Animal animal, bool mask, float time)
+    {
+        yield return new WaitForSeconds(time);
+        animal.ChangeSprite(mask);
+    }
 }
