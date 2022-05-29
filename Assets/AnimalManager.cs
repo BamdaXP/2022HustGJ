@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class AnimalManager : MonoBehaviour
+public class AnimalManager : Singleton<AnimalManager>
 {
     public List<AnimalData> datas;
     //public List<Animal> animals;
