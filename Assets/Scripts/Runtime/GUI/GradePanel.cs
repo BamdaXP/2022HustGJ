@@ -17,6 +17,7 @@ public class GradePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayBGM("BGM3");
         StartCoroutine(Animate());
     }
 
@@ -74,6 +75,7 @@ public class GradePanel : MonoBehaviour
         AudioManager.Instance.PlaySE("Button2");
         SceneLoader.Instance.LoadSceneAsync("TitleScene");
         SceneLoader.Instance.UnloadSceneAsync("GradeScene");
+        AudioManager.Instance.StopBGM("BGM3");
     }
 
     public void Next()
@@ -81,5 +83,6 @@ public class GradePanel : MonoBehaviour
         AudioManager.Instance.PlaySE("Button2");
         SceneLoader.Instance.LoadSceneAsync("GameScene");
         SceneLoader.Instance.UnloadSceneAsync("GradeScene");
+        AudioManager.Instance.StopBGM("BGM3");
     }
 }
