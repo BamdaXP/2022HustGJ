@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     public int TestCount;
     public int Score;
 
+    public string currentLevelName = "";
     public void LevelInit()
     {
         TestCount = 0;
