@@ -12,56 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22db1b9c933b00439245de0eddafda2, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  height: 0.5
-  heightRange: 0.3
+  height: 0.6
+  heightRange: 0.15
   heightTime: 0.4
   change:
+  - 0.1
   - 1
   - 1
   - 1
-  - 0.3
-  - 0.8
+  - 1
   fir:
   - 2
-  - -4
-  - -3
+  - -2
   - 4
-  - -1
+  - -2
   sec:
   - 2
-  - -4
-  - -3
-  - 4
   - -1
+  - 4
+  - -2
   radTime:
   - 2
   - 2
-  - 3
+  - 2
   radSpeed:
-  - 3
+  - 2
   - -1
-  - 1
+  - -1
   sceTime:
   - 2
-  - 3
   - 0.25
   - 2
-  - 0.2
+  - 0.5
   sceSpeed:
-  - 2
-  - 8
-  - 0
   - -6
+  - 2
+  - -2
   - 0
   keepTime: 13
   maxTime: 25
-  slideStart_L: {x: 1.5, y: 6.2, z: 0}
-  slideStart_R: {x: 4.5, y: 6.2, z: 0}
-  hitDis: 0.25
-  prelogs:
-  - {fileID: 11400000, guid: 1d6933a67fff9774db89fc761b2a075f, type: 2}
-  postlogs:
-  - {fileID: 11400000, guid: 47099f34f865df1458d826f1b44f9b30, type: 2}
+  slideStart_L: {x: -2, y: 6.2, z: 0}
+  slideStart_R: {x: 0, y: 6.2, z: 0}
+  hitDis: 0.3
+  prelogs: []
+  postlogs: []
   cgs: []
-  maskSprite: {fileID: 21300000, guid: 790cdea0c02d4a84b8612762637f46bc, type: 3}
-  aSprite: {fileID: 21300000, guid: eb7d668b3f064eb48b5f455280add63c, type: 3}
+  maskSprite: {fileID: 0}
+  aSprite: {fileID: 0}
