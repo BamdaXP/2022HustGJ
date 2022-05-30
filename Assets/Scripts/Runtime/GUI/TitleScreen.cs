@@ -8,6 +8,8 @@ public class TitleScreen : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.PlayBGM("BGM");
+
         var seq = DOTween.Sequence();
         seq.Append(animals.transform.DOScaleY(1.05f,0.6f));
         seq.Append(animals.transform.DOScaleY(1f, 0.2f));
@@ -19,14 +21,16 @@ public class TitleScreen : MonoBehaviour
         print("load game");
         SceneLoader.Instance.LoadSceneAsync("GameScene");
         SceneLoader.Instance.UnloadSceneAsync("TitleScene");
-        AudioManager.Instance.PlaySE("Button3");
+        AudioManager.Instance.PlaySE("Button");
+        AudioManager.Instance.StopBGM("BGM");
     }
 
     public void StartInfinteGame()
     {
         SceneLoader.Instance.LoadSceneAsync("GradeScene");
         SceneLoader.Instance.UnloadSceneAsync("TitleScene");
-        AudioManager.Instance.PlaySE("Button3");
+        AudioManager.Instance.PlaySE("Button");
+        AudioManager.Instance.StopBGM("BGM");
     }
     public void QuitGame()
     {

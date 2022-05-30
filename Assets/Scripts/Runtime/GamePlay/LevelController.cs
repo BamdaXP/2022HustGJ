@@ -210,20 +210,20 @@ public class LevelController : Singleton<LevelController>
         doctor.TurnAround(false);
         //Destroy(secondStage);
         //doctor.Init();
-        //var a = animalManager.testAnimal;
-        //if (a != null)
-        //{
-        //    foreach (var pd in a.data.postlogs)
-        //    {
-        //        dialoguePanel.AddDialogue(pd);
-        //        yield return null;
-        //    }
-        //}
-        //while (dialoguePanel.IsDialoging)
-        //{
-        //    yield return null;
-        //}
-        yield return new WaitForSeconds(2f);
+        var a = animalManager.testAnimal;
+        if (a != null)
+        {
+            foreach (var pd in a.data.postlogs)
+            {
+                dialoguePanel.AddDialogue(pd);
+                yield return null;
+            }
+        }
+        while (dialoguePanel.IsDialoging)
+        {
+            yield return null;
+        }
+        //yield return new WaitForSeconds(2f);
         SwitchGameState(PlayerState.Transition);
         yield return null;
     }
@@ -231,7 +231,10 @@ public class LevelController : Singleton<LevelController>
     private IEnumerator DoTransition()
     {
         // ´ý¸ü¸Ä
+        AudioManager.Instance.PlaySE("Button3");
         emotion.MakeEmotion(Emotion.EmotionType.Good);
+
+
         yield return new WaitForSeconds(2f);
         animalManager.Proceed();
         SwitchGameState(PlayerState.Ready);
