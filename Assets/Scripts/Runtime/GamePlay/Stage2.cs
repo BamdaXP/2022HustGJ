@@ -75,47 +75,51 @@ public class Stage2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFinishFirStep)
+        if (LevelController.Instance.PlayerState != PlayerState.Stage2||!isFinishFirStep) return;
+        if (!isBulid)
         {
-            if (!isBulid)
-            {
-                //初始化几个部件
-                bulid();
-            }
-            //开始执行运动函数
-            posMove();
-            if (slide2.transform.position.x - slide1.transform.position.x < minDistance)
-            {
-                Vector3 min = slide1.transform.position;
-                min.x = slide2.transform.position.x - minDistance;
-                slide1.transform.position = min;
-            }
-                slideMove();
-            if (slide2.transform.position.x - slide1.transform.position.x < minDistance)
-            {
-                Vector3 min = slide1.transform.position;
-                min.x = slide2.transform.position.x - minDistance;
-                slide1.transform.position = min;
-            }
-            if (isBulid)
-            {
-                Vector3 newPos = slide.transform.position;
-                newPos.x = ((slide1.transform.position.x/2 + slide2.transform.position.x/2) / 16f + 0.5f) * 1920;
-                slide.transform.position = newPos;
-                Vector3 size = new Vector3(1, 125f, 0);
-                size.x = (slide2.transform.position.x - slide1.transform.position.x) /16f*1920;
-                slide.transform.localScale = size;
+            //初始化几个部件
+            //bulid();
+        }
+        //开始执行运动函数
+        posMove();
+        if (slide2.transform.position.x - slide1.transform.position.x < minDistance)
+        {
+            Vector3 min = slide1.transform.position;
+            min.x = slide2.transform.position.x - minDistance;
+            slide1.transform.position = min;
+        }
+        slideMove();
+        if (slide2.transform.position.x - slide1.transform.position.x < minDistance)
+        {
+            Vector3 min = slide1.transform.position;
+            min.x = slide2.transform.position.x - minDistance;
+            slide1.transform.position = min;
+        }
+        if (isBulid)
+        {
+           // Debug.Log("bulid");
+            Vector3 newPos = slide.transform.position;
+            newPos.x = ((slide1.transform.position.x / 2 + slide2.transform.position.x / 2)/16+0.5f)*1920;
+            Debug.Log(slide1.transform.position.x / 2 + slide2.transform.position.x / 2);
+            Debug.Log("x");
+            Debug.Log(newPos.x);
+            slide.transform.position = newPos;
+            Vector3 size = new Vector3(1, 125f, 0);
+            size.x = (slide2.transform.position.x - slide1.transform.position.x) / 16f * 1920;
+            slide.transform.localScale = size;
 
-                //判定各个部件不能超过边界
-                inTheLine(stag2.pointPercentage);
-                inTheLine(slide1);
-                inTheLine(slide2);
-            }
+            //判定各个部件不能超过边界
+            inTheLine(stag2.pointPercentage);
+            inTheLine(slide1);
+            inTheLine(slide2);
         }
 
+
     }
-    void bulid()
+    public void bulid()
     {
+        Debug.Log("Build");
         /*slide.SetActive(true);
         slide1.SetActive(true); 
         slide2.SetActive(true);
@@ -123,7 +127,7 @@ public class Stage2 : MonoBehaviour
         pos.transform.position = poi;*/
         isBulid = true;
         //
-        thisAnimal = findTheNearest();
+        thisAnimal = LevelController.Instance.animalManager.testAnimal;
         stag2 = GetComponent<Stage2Test>();
         //
         keepTime = thisAnimal.data.keepTime;
@@ -137,6 +141,8 @@ public class Stage2 : MonoBehaviour
         slide_start2.y = slide_start2.y * 0.8f - 1.2f;
         slide1.transform.position = slide_start1;
         slide2.transform.position = slide_start2;
+        Debug.Log(slide_start1);
+        Debug.Log(slide1.transform.position);
 
         moveStartTime = 0f;
 
@@ -150,6 +156,7 @@ public class Stage2 : MonoBehaviour
         m = 0;
         changetime = thisAnimal.data.change[0];
         stag2.pointPercentage = 0f;
+        isFinishSecStep = false;
     }
     void posMove()//指针的移动
     {
@@ -296,7 +303,6 @@ public class Stage2 : MonoBehaviour
 
         isBulid = false;
         isFinishSecStep = true;
-        LevelController.Instance.SwitchGameState(PlayerState.Transition);
     }
     void fail()
     {
@@ -326,7 +332,7 @@ public class Stage2 : MonoBehaviour
             p = 1f;
     }
     //寻找距离最近的animal
-    Animal findTheNearest()
+    /*Animal findTheNearest()
     {
         Animal[] allAnimals = FindObjectsOfType<Animal>();
         Animal near = allAnimals[0];
@@ -339,5 +345,5 @@ public class Stage2 : MonoBehaviour
         }
         Debug.Log("找到了动物" + near);
         return near;
-    }
+    }*/
 }

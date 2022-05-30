@@ -26,7 +26,7 @@ public class LevelController : Singleton<LevelController>
     //public GameObject secondStagePrefab;
 
     public Window firstStage;
-    public Window secondStage;
+    public GameObject stage2GO;
     public Stage1 stage1;
     public Stage2 stage2;
 
@@ -215,10 +215,22 @@ public class LevelController : Singleton<LevelController>
         //    print("stage 2 for 3 s");
         //    yield return new WaitForSeconds(0.3f);
         //}
-        //secondStage.Show();
-        yield return new WaitForSeconds(2f);
-        //secondStage.Hide();
-        doctor.depthSource = null;
+        //stage2 = Instantiate<GameObject>(stage2GO).transform.Find("SecondStage").GetComponent<Stage2>();
+        //stage2.isFinishFirStep = true;
+        //doctor.depthSource = stage2;
+        //yield return new WaitForSeconds(1f);
+        //while (!stage2.isFinishSecStep)
+        //{
+
+        //    //print("stage 1 for 3 s");
+        //    yield return new WaitForSeconds(0.3f);
+        //}
+        //currentScore += stage2.score;
+        //currentScore /= 2;
+        //Destroy(stage2);
+        //doctor.depthSource = null;
+
+        yield return new WaitForSeconds(1f);
         SwitchGameState(PlayerState.Dialog2);
         yield return null;
     }
