@@ -223,6 +223,7 @@ public class LevelController : Singleton<LevelController>
         }
         Destroy(secondStage);
         doctor.depthSource = null;
+        doctor.Init();
         SwitchGameState(PlayerState.Dialog2);
         yield return null;
     }

@@ -56,11 +56,15 @@ public class Stage1 : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        Init(true);
     }
 
-    public void Init()
+    public void Init(bool initCheck = false)
     {
+        m_height = 0.5f;
+        m_heightRange = 0.2f;
+        m_maxPressTime = 1f;
+
         m_checkAreaTransform.localPosition = new Vector2
             (m_checkAreaTransform.localPosition.x, m_height * m_heightMultiplier * 2);
         m_checkAreaTransform.localScale = new Vector2
@@ -170,4 +174,21 @@ public class Stage1 : MonoBehaviour
 
     private float m_heightMultiplier = 5.2f;
     private float m_scaleMultiplier = 6.2f;
+
+
+    Animal findTheNearest()
+    {
+        Animal[] allAnimals = FindObjectsOfType<Animal>();
+        if (allAnimals.Length == 0) return null;
+        Animal near = allAnimals[0];
+        for (int i = 1; i < allAnimals.Length; i++)
+        {
+            if (near.transform.position.x > allAnimals[i].transform.position.x && allAnimals[i].transform.position.x > 0f)
+            {
+                near = allAnimals[i];
+            }
+        }
+        Debug.Log("找到了动物" + near);
+        return near;
+    }
 }
