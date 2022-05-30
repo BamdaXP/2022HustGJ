@@ -322,7 +322,7 @@ public class Stage2 : MonoBehaviour
         Animal near = allAnimals[0];
         for(int i=1;i<allAnimals.Length;i++)
         {
-            if(near.transform.position.x>allAnimals[i].transform.position.x)
+            if(near.transform.position.x>allAnimals[i].transform.position.x && allAnimals[i].transform.position.x > 0f)
             {
                 near = allAnimals[i];
             }    

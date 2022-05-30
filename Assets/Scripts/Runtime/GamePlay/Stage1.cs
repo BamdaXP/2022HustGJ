@@ -61,10 +61,16 @@ public class Stage1 : MonoBehaviour
 
     public void Init()
     {
-        m_checkAreaTransform.localPosition = new Vector2
-            (m_checkAreaTransform.localPosition.x, m_height * m_heightMultiplier * 2);
-        m_checkAreaTransform.localScale = new Vector2
-            (m_checkAreaTransform.localScale.x, m_heightRange * m_scaleMultiplier);
+        Animal currentAnimal = findTheNearest();
+        if (currentAnimal != null)
+        {
+            m_height = currentAnimal.data.height;
+            m_heightRange = currentAnimal.data.heightRange;
+            m_maxPressTime = currentAnimal.data.heightTime;
+        }
+
+        m_checkAreaTransform.localPosition = new Vector3(m_checkAreaTransform.localPosition.x, m_heightMultiplier * m_checkAreaTransform.localPosition.y, m_checkAreaTransform.localPosition.z);
+        m_checkAreaTransform.localScale = new Vector3(m_checkAreaTransform.localScale.x, m_scaleMultiplier * m_checkAreaTransform.localScale.y, m_checkAreaTransform.localScale.z);
         m_currentHeight = 0f;
         m_velocity = m_aimVelocity = 0f;
         m_roundEnd = false;
@@ -170,4 +176,20 @@ public class Stage1 : MonoBehaviour
 
     private float m_heightMultiplier = 5.2f;
     private float m_scaleMultiplier = 6.2f;
+
+    Animal findTheNearest()
+    {
+        Animal[] allAnimals = FindObjectsOfType<Animal>();
+        if (allAnimals.Length == 0) return null;
+        Animal near = allAnimals[0];
+        for (int i = 1; i < allAnimals.Length; i++)
+        {
+            if (near.transform.position.x > allAnimals[i].transform.position.x && allAnimals[i].transform.position.x > 0f)
+            {
+                near = allAnimals[i];
+            }
+        }
+        Debug.Log("找到了动物" + near);
+        return near;
+    }
 }
