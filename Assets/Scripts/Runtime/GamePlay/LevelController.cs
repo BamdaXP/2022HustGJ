@@ -242,6 +242,27 @@ public class LevelController : Singleton<LevelController>
         {
             yield return null;
         }
+
+        if (a != null)
+        {
+            if (a.data.cgs.Count > 0)
+            {
+                CG.gameObject.GetComponent<Window>().Show();
+                foreach (var cg in a.data.cgs)
+                {
+                    CG.sprite = cg;
+                    yield return new WaitForSeconds(3f);
+                    while (!Input.GetMouseButton(0))
+                    {
+                        yield return null;
+                    }
+                    AudioManager.Instance.PlaySE("Page");
+                }
+                CG.gameObject.GetComponent<Window>().Hide();
+                yield return new WaitForSeconds(3f);
+            }
+        }
+
         //yield return new WaitForSeconds(2f);
         SwitchGameState(PlayerState.Transition);
         yield return null;
