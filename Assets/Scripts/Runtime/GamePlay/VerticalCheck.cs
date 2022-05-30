@@ -4,13 +4,14 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage1 : MonoBehaviour
+public class VerticalCheck : MonoBehaviour
 {
     [SerializeField]
     private Transform m_redFillTransform;
     [SerializeField]
     private Transform m_checkAreaTransform;
 
+    [SerializeField]
     private float m_currentHeight;
     [SerializeField]
     private float m_height = 0.5f;
@@ -31,7 +32,6 @@ public class Stage1 : MonoBehaviour
     private bool m_roundEnd;
     private bool m_canControl;
     private float m_pressTimer;
-    [SerializeField]
     private bool m_finished;
     [SerializeField]
     private float m_maxPressTime = 1f;
@@ -61,20 +61,6 @@ public class Stage1 : MonoBehaviour
 
     public void Init()
     {
-        if (LevelController.Instance.animalManager.testAnimal != null)
-        {
-            AnimalData currentAnimalData = LevelController.Instance.animalManager.testAnimal.data;
-            m_height = currentAnimalData.height;
-            m_heightRange = currentAnimalData.heightRange;
-            m_maxPressTime = currentAnimalData.heightTime;
-        }
-        else
-        {
-            Debug.Log("TestAnimalNULL");
-            m_height = 0.5f;
-            m_heightRange = 0.2f;
-            m_maxPressTime = 1f;
-        }
         m_checkAreaTransform.localPosition = new Vector2
             (m_checkAreaTransform.localPosition.x, m_height * m_heightMultiplier * 2);
         m_checkAreaTransform.localScale = new Vector2
@@ -90,7 +76,7 @@ public class Stage1 : MonoBehaviour
 
     private void Update()
     {
-        if (LevelController.Instance.PlayerState == PlayerState.Stage1 && !m_finished)
+        if (!m_finished)
         {
             MoveAndCheck();
         }
@@ -99,7 +85,7 @@ public class Stage1 : MonoBehaviour
     private void MoveAndCheck()
     {
         m_timeSlider.value = 1 - m_pressTimer / m_maxPressTime;
-        m_redFillTransform.localScale = new Vector3(m_redFillTransform.localScale.x, m_currentHeight, m_redFillTransform.localScale.z);
+        SetRedFill();
 
         if (m_roundEnd) return;
 
@@ -144,6 +130,7 @@ public class Stage1 : MonoBehaviour
             {
                 m_finished = true;
                 Debug.Log("Excellent!");
+                LevelController.Instance.SwitchGameState(PlayerState.Stage2);
                 return;
             }
             else if (!m_canControl && !m_roundEnd)
@@ -184,4 +171,9 @@ public class Stage1 : MonoBehaviour
 
     private float m_heightMultiplier = 5.2f;
     private float m_scaleMultiplier = 6.2f;
+    private void SetRedFill()
+    {
+        m_redFillTransform.localPosition = new Vector2(m_redFillTransform.localPosition.x, m_currentHeight * m_heightMultiplier);
+        m_redFillTransform.localScale = new Vector2(m_redFillTransform.localScale.x, m_currentHeight * m_scaleMultiplier);
+    }
 }

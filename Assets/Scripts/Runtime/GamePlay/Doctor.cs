@@ -5,9 +5,9 @@ using UnityEngine;
 public class Doctor : MonoBehaviour
 {
     [HideInInspector]
-    public Stage2 depthSource;
+    public L_or_R depthSource;
     [HideInInspector]
-    public Stage1 heightSource;
+    public VerticalCheck heightSource;
 
     public SpriteRenderer[] armSRs;
     public SpriteRenderer doctorSR;

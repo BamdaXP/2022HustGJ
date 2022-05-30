@@ -11,6 +11,7 @@ public class SceneLoader : Singleton<SceneLoader>
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
     }
 
     public void LoadSceneAsync(string name, bool showLoading = true)
@@ -40,6 +41,8 @@ public class SceneLoader : Singleton<SceneLoader>
             yield return null;
         } while (!op.isDone);
         loadingScreen.progress = 1f;
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
         yield return new WaitForSecondsRealtime(1f);
         loadingScreenWindow.Hide();
 

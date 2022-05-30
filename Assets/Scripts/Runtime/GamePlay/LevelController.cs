@@ -22,13 +22,11 @@ public class LevelController : Singleton<LevelController>
 
     public PlayerState PlayerState;
 
-    //public GameObject firstStagePrefab;
-    //public GameObject secondStagePrefab;
-
-    public Window firstStage;
-    public GameObject stage2GO;
-    public Stage1 stage1;
-    public Stage2 stage2;
+    public GameObject firstStagePrefab;
+    public GameObject secondStagePrefab;
+    public GameObject firstStage;
+    public GameObject secondStage;
+    public VerticalCheck stage1;
 
     public Image CG;
     public List<Sprite> preCGs;
@@ -178,22 +176,28 @@ public class LevelController : Singleton<LevelController>
         animalManager.testAnimal.ChangeSprite(false);
 
         // ´ý¸ü¸Ä
-        //firstStage = Instantiate<GameObject>(firstStagePrefab, null, true);
-        firstStage.Show();
-        stage1.Init();
-        doctor.heightSource = stage1;
+        firstStage = Instantiate<GameObject>(firstStagePrefab, transform);
+        stage1 = firstStage.GetComponent<VerticalCheck>();
+        //stage1.Show();
+        //stage1.Init();
+        //doctor.heightSource = stage1;
 
         //var a = animalManager.testAnimal;
         yield return new WaitForSeconds(1f);
         //if (a != null)
         while (!stage1.Finished)
         {
-            
             //print("stage 1 for 3 s");
-            yield return new WaitForSeconds(0.3f);
+            yield return null;
         }
         currentScore += stage1.Score;
-        firstStage.Hide();
+        //firstStage.Hide();
+        yield return new WaitForSeconds(2f);
+        while (firstStage != null)
+        {
+            Destroy(firstStage.gameObject);
+            yield return new WaitForSeconds(0.1f);
+        }
         doctor.heightSource = null;
         SwitchGameState(PlayerState.Stage2);
         yield return null;
@@ -238,7 +242,6 @@ public class LevelController : Singleton<LevelController>
     private IEnumerator DoDialog2()
     {
         animalManager.testAnimal.ChangeSprite(true);
-        doctor.Init();
         doctor.TurnAround(false);
         //Destroy(secondStage);
         //doctor.Init();
