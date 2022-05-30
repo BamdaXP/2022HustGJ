@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d17a74b0e6b654ea5eeaecc781cff8, type: 3}
+  m_Name: 2a_1
+  m_EditorClassIdentifier: 
+  text: "\u597D\u70ED\uFF0C\u8FD9\u5929\u8D3C\u9002\u5408\u6070\u897F\u74DC\u567B\uFF0C\u4EE5\u524D\u8FD9\u65F6\u5019\u6211\u4E00\u5929\u8981\u70AB\u4E09\u4E2A\u3002"
+  textSound: {fileID: 0}
+  textSpeed: 5
+  dialogueColor: {r: 0.1487855, g: 0.9622642, b: 0.030865014, a: 1}
