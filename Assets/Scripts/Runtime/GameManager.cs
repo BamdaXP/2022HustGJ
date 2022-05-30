@@ -5,15 +5,25 @@ using DG.Tweening;
 
 public class GameManager : Singleton<GameManager>
 {
-    public enum GameState
+    //public enum GameState
+    //{
+    //    Title,
+    //    InGame,
+    //    GameOver,
+    //}
+
+    //public GameState gameState = GameState.Title;
+    // Start is called before the first frame update
+
+    public int TestCount;
+    public int Score;
+
+    public void LevelInit()
     {
-        Title,
-        InGame,
-        GameOver,
+        TestCount = 0;
+        Score = 0;
     }
 
-    public GameState gameState = GameState.Title;
-    // Start is called before the first frame update
     void Start()
     {
         SceneLoader.Instance.LoadSceneAsync("TitleScene");

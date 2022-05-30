@@ -36,6 +36,7 @@ public class LevelController : Singleton<LevelController>
     public Emotion emotion;
     private void Start()
     {
+        GameManager.Instance.LevelInit();
         doctor.TurnAround(false);
         StartCoroutine(PreCG());
     }

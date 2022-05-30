@@ -13,6 +13,7 @@ public class Doctor : MonoBehaviour
     public SpriteRenderer doctorSR;
     public Sprite testingSprite;
     public Sprite turnAroundSprite;
+    public Animator sweatAnimator;
 
     private float leftPos = -2.8f;
     private float rightPos = 0f;
@@ -72,5 +73,18 @@ public class Doctor : MonoBehaviour
                 SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, 0f);
         }
         doctorSR.sprite = towardsRight ? testingSprite : turnAroundSprite;
+    }
+
+    public void SetSweat(bool start)
+    {
+        if (start)
+        {
+            sweatAnimator.speed = 1f;
+        }
+        else
+        {
+            sweatAnimator.speed = 0f;
+        }
+        sweatAnimator.Play("DoctorSweat3", 0, 0f);
     }
 }
