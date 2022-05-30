@@ -31,6 +31,7 @@ public class Stage1 : MonoBehaviour
     private bool m_roundEnd;
     private bool m_canControl;
     private float m_pressTimer;
+    [SerializeField]
     private bool m_finished;
     [SerializeField]
     private float m_maxPressTime = 1f;
@@ -75,7 +76,7 @@ public class Stage1 : MonoBehaviour
 
     private void Update()
     {
-        if (!m_finished)
+        if (LevelController.Instance.PlayerState == PlayerState.Stage1 && !m_finished)
         {
             MoveAndCheck();
         }
@@ -129,7 +130,6 @@ public class Stage1 : MonoBehaviour
             {
                 m_finished = true;
                 Debug.Log("Excellent!");
-                LevelController.Instance.SwitchGameState(PlayerState.Stage2);
                 return;
             }
             else if (!m_canControl && !m_roundEnd)

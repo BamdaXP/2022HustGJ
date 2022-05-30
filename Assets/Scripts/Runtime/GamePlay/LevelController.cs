@@ -21,11 +21,13 @@ public class LevelController : Singleton<LevelController>
 
     public PlayerState PlayerState;
 
-    public GameObject firstStagePrefab;
-    public GameObject secondStagePrefab;
+    //public GameObject firstStagePrefab;
+    //public GameObject secondStagePrefab;
 
-    public GameObject firstStage;
-    public GameObject secondStage;
+    public Window firstStage;
+    public Window secondStage;
+    public Stage1 stage1;
+    public Stage2 stage2;
 
     public Image CG;
     public List<Sprite> preCGs;
@@ -87,7 +89,7 @@ public class LevelController : Singleton<LevelController>
             CG.gameObject.GetComponent<Window>().Hide();
             yield return new WaitForSeconds(3f);
         }
-        SceneLoader.Instance.UnloadSceneAsync("GameSceneTemp");
+        SceneLoader.Instance.UnloadSceneAsync("GameScene");
         SceneLoader.Instance.LoadSceneAsync("GradeScene");
     }
     public void SwitchGameState(PlayerState state)
@@ -148,6 +150,7 @@ public class LevelController : Singleton<LevelController>
         {
             yield return null;
         }
+        //yield return new WaitForSeconds(2f);
         SwitchGameState(PlayerState.Stage1);
         yield return null;
     }
@@ -155,17 +158,24 @@ public class LevelController : Singleton<LevelController>
     private IEnumerator DoStage1()
     {
         animalManager.testAnimal.ChangeSprite(false);
-        /*
+
         // 待更改
-        firstStage = Instantiate<GameObject>(firstStagePrefab, null, true);
-        doctor.heightSource = firstStage.GetComponent<Stage1>();
-        */
-        var a = animalManager.testAnimal;
-        if (a != null)
+        //firstStage = Instantiate<GameObject>(firstStagePrefab, null, true);
+        firstStage.Show();
+        stage1.Init();
+        doctor.heightSource = stage1;
+
+        //var a = animalManager.testAnimal;
+        yield return new WaitForSeconds(1f);
+        //if (a != null)
+        while (!stage1.Finished)
         {
-            print("stage 1 for 3 s");
+            
+            //print("stage 1 for 3 s");
             yield return new WaitForSeconds(0.3f);
         }
+        firstStage.Hide();
+        doctor.heightSource = null;
         SwitchGameState(PlayerState.Stage2);
         yield return null;
         
@@ -173,7 +183,6 @@ public class LevelController : Singleton<LevelController>
 
     private IEnumerator DoStage2()
     {
-        doctor.heightSource = null;
         /*
         // 待更改
         Destroy(firstStage);
@@ -181,12 +190,16 @@ public class LevelController : Singleton<LevelController>
         doctor.depthSource = secondStage.GetComponent<Stage2>();
         //yield return new WaitForSeconds(2f);
         */
-        var a = animalManager.testAnimal;
-        if (a != null)
-        {
-            print("stage 2 for 3 s");
-            yield return new WaitForSeconds(0.3f);
-        }
+        //var a = animalManager.testAnimal;
+        //if (a != null)
+        //{
+        //    print("stage 2 for 3 s");
+        //    yield return new WaitForSeconds(0.3f);
+        //}
+        //secondStage.Show();
+        yield return new WaitForSeconds(2f);
+        //secondStage.Hide();
+        doctor.depthSource = null;
         SwitchGameState(PlayerState.Dialog2);
         yield return null;
     }
@@ -195,22 +208,22 @@ public class LevelController : Singleton<LevelController>
     {
         animalManager.testAnimal.ChangeSprite(true);
         doctor.TurnAround(false);
-        doctor.depthSource = null;
         //Destroy(secondStage);
-        doctor.Init();
-        var a = animalManager.testAnimal;
-        if (a != null)
-        {
-            foreach (var pd in a.data.postlogs)
-            {
-                dialoguePanel.AddDialogue(pd);
-                yield return null;
-            }
-        }
-        while (dialoguePanel.IsDialoging)
-        {
-            yield return null;
-        }
+        //doctor.Init();
+        //var a = animalManager.testAnimal;
+        //if (a != null)
+        //{
+        //    foreach (var pd in a.data.postlogs)
+        //    {
+        //        dialoguePanel.AddDialogue(pd);
+        //        yield return null;
+        //    }
+        //}
+        //while (dialoguePanel.IsDialoging)
+        //{
+        //    yield return null;
+        //}
+        yield return new WaitForSeconds(2f);
         SwitchGameState(PlayerState.Transition);
         yield return null;
     }
