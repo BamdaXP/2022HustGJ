@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22db1b9c933b00439245de0eddafda2, type: 3}
+  m_Name: alligator (throat hurt)
+  m_EditorClassIdentifier: 
+  height: 0.5
+  heightRange: 0.3
+  heightTime: 0.4
+  change:
+  - 1
+  - 1
+  - 1
+  - 0.3
+  - 0.8
+  fir:
+  - 2
+  - -4
+  - -3
+  - 4
+  - -1
+  sec:
+  - 2
+  - -4
+  - -3
+  - 4
+  - -1
+  radTime:
+  - 2
+  - 2
+  - 3
+  radSpeed:
+  - 3
+  - -1
+  - 1
+  sceTime:
+  - 2
+  - 3
+  - 0.25
+  - 2
+  - 0.2
+  sceSpeed:
+  - 2
+  - 8
+  - 0
+  - -6
+  - 0
+  keepTime: 13
+  maxTime: 25
+  hitDis: 0.25
+  slideStart_L: {x: 1.5, y: 6.2, z: 0}
+  slideStart_R: {x: 4.5, y: 6.2, z: 0}
