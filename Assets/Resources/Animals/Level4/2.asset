@@ -54,7 +54,7 @@ MonoBehaviour:
   - 2
   - 1
   - -1
-  keepTime: 13
+  keepTime: 12
   maxTime: 25
   slideStart_L: {x: -6, y: 6.2, z: 0}
   slideStart_R: {x: -2, y: 6.2, z: 0}

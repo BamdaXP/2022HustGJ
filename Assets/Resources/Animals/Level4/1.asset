@@ -48,13 +48,16 @@ MonoBehaviour:
   - 0
   - 4
   - 0
-  keepTime: 13
+  keepTime: 12
   maxTime: 25
   slideStart_L: {x: -1.5, y: 6.2, z: 0}
   slideStart_R: {x: 1.5, y: 6.2, z: 0}
   hitDis: 0.3
-  prelogs: []
-  postlogs: []
+  prelogs:
+  - {fileID: 11400000, guid: 18206eeb1e63a74438f63a9a662f09bb, type: 2}
+  - {fileID: 11400000, guid: 2b95a4a8a42c85e4eb4394e01c169d63, type: 2}
+  postlogs:
+  - {fileID: 11400000, guid: a4af3cee1f69a214ab2be26674fcf830, type: 2}
   cgs: []
   maskSprite: {fileID: 21300000, guid: 2758dc849f16a8b4b855a3391f60c71a, type: 3}
   aSprite: {fileID: 21300000, guid: 04b0077a0da274749aac1ada034b0181, type: 3}

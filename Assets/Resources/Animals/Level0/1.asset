@@ -54,7 +54,10 @@ MonoBehaviour:
   prelogs:
   - {fileID: 11400000, guid: 9a04b6862f4fe2144af8849142194b93, type: 2}
   - {fileID: 11400000, guid: a55e242c1e987704d937f7ec7db29a66, type: 2}
+  - {fileID: 11400000, guid: f7e6eddf579402a418210fd4099bd43a, type: 2}
+  - {fileID: 11400000, guid: 345d03b0e609b6b40a7116fdf68f9835, type: 2}
   postlogs:
   - {fileID: 11400000, guid: 1fbcaeeb0c8be624abfb7ab9218b44ab, type: 2}
+  cgs: []
   maskSprite: {fileID: 21300000, guid: e4056fd10463cbc44b3020d3b5e12666, type: 3}
   aSprite: {fileID: 21300000, guid: 98194730a9d0a194fb9146c5fdc6a564, type: 3}

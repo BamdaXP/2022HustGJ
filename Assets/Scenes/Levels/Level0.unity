@@ -7796,10 +7796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   datas:
-  - {fileID: 11400000, guid: 7dd62f67b6b97924a80751e6e66a28df, type: 2}
-  - {fileID: 11400000, guid: 1336ad0783208c74f8297e2203800fd0, type: 2}
-  - {fileID: 11400000, guid: 457dfba38e0b13847911fd8cd564d19b, type: 2}
-  - {fileID: 11400000, guid: f2a8cd3f6223f424083f4f97ecaaf61a, type: 2}
+  - {fileID: 11400000, guid: 5a7e1e7cbde0cf94b9a4b49bca9e53cd, type: 2}
   animalPfb: {fileID: 3085987452643802662, guid: de9172b5eb44a5e47aadddf2661cf89e, type: 3}
   initPoint: {fileID: 197747143}
   backupPoint: {fileID: 2038994485}

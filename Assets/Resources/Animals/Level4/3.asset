@@ -46,13 +46,15 @@ MonoBehaviour:
   - 4
   - 2
   - 1
-  keepTime: 13
+  keepTime: 12
   maxTime: 25
   slideStart_L: {x: -2, y: 6.2, z: 0}
   slideStart_R: {x: 0, y: 6.2, z: 0}
   hitDis: 0
-  prelogs: []
-  postlogs: []
+  prelogs:
+  - {fileID: 11400000, guid: 80fd32fcb23668f46a25dff6542492b2, type: 2}
+  postlogs:
+  - {fileID: 11400000, guid: e9290ac2df209b04695cd95280ba8414, type: 2}
   cgs:
   - {fileID: 21300000, guid: 88094d5b6f4b1d1488562988fdae7c3d, type: 3}
   - {fileID: 21300000, guid: d98d56ab581e5e440aef345b8c3f39d6, type: 3}
