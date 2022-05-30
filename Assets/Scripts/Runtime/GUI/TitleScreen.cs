@@ -19,7 +19,7 @@ public class TitleScreen : MonoBehaviour
     public void StartStroyGame()
     {
         print("load game");
-        SceneLoader.Instance.LoadSceneAsync("GameScene");
+        SceneLoader.Instance.LoadSceneAsync("Level1");
         SceneLoader.Instance.UnloadSceneAsync("TitleScene");
         AudioManager.Instance.PlaySE("Button");
         AudioManager.Instance.StopBGM("BGM");
@@ -27,7 +27,7 @@ public class TitleScreen : MonoBehaviour
 
     public void StartInfinteGame()
     {
-        SceneLoader.Instance.LoadSceneAsync("GradeScene");
+        SceneLoader.Instance.LoadSceneAsync("GameScene");
         SceneLoader.Instance.UnloadSceneAsync("TitleScene");
         AudioManager.Instance.PlaySE("Button");
     }
