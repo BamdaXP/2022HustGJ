@@ -14,6 +14,7 @@ public enum PlayerState
 }
 public class LevelController : Singleton<LevelController>
 {
+    public string BGM;
     public AnimalManager animalManager;
     public DialoguePanel dialoguePanel;
 
@@ -36,6 +37,7 @@ public class LevelController : Singleton<LevelController>
     public Emotion emotion;
     private void Start()
     {
+        AudioManager.Instance.PlayBGM(BGM);
         doctor.TurnAround(false);
         StartCoroutine(PreCG());
     }
@@ -63,6 +65,7 @@ public class LevelController : Singleton<LevelController>
                 {
                     yield return null;
                 }
+                AudioManager.Instance.PlaySE("Page");
             }
             CG.gameObject.GetComponent<Window>().Hide();
             yield return new WaitForSeconds(3f);
@@ -85,12 +88,14 @@ public class LevelController : Singleton<LevelController>
                 {
                     yield return null;
                 }
+                AudioManager.Instance.PlaySE("Page");
             }
             CG.gameObject.GetComponent<Window>().Hide();
             yield return new WaitForSeconds(3f);
         }
         SceneLoader.Instance.UnloadSceneAsync("GameScene");
         SceneLoader.Instance.LoadSceneAsync("GradeScene");
+        AudioManager.Instance.StopBGM(BGM);
     }
     public void SwitchGameState(PlayerState state)
     {

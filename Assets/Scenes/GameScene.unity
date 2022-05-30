@@ -7434,6 +7434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Persistent: 0
+  BGM: bgm_day
   animalManager: {fileID: 1707799282}
   dialoguePanel: {fileID: 1017629179}
   doctor: {fileID: 131989297}

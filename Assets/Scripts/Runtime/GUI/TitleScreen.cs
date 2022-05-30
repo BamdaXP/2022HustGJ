@@ -30,7 +30,6 @@ public class TitleScreen : MonoBehaviour
         SceneLoader.Instance.LoadSceneAsync("GradeScene");
         SceneLoader.Instance.UnloadSceneAsync("TitleScene");
         AudioManager.Instance.PlaySE("Button");
-        AudioManager.Instance.StopBGM("BGM");
     }
     public void QuitGame()
     {
