@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22db1b9c933b00439245de0eddafda2, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: 
-  height: 2
+  height: 0.8
   heightRange: 0.15
   heightTime: 0.5
   change:
@@ -56,5 +56,6 @@ MonoBehaviour:
   prelogs:
   - {fileID: 11400000, guid: d9c026ae6631a1f42b925fb87af913f1, type: 2}
   postlogs: []
+  cgs: []
   maskSprite: {fileID: 21300000, guid: 0cf69c75075f42344b87f50e9a638b88, type: 3}
   aSprite: {fileID: 21300000, guid: 87f22a5cb967d344fadfb46b84289fbd, type: 3}
