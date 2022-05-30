@@ -68,15 +68,13 @@ public class Stage2 : MonoBehaviour
         isBack = false;
 
         //测试用
-
-        isFinishFirStep = true;
+        //isFinishFirStep = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isFinishFirStep)
-        {
+        
             if (!isBulid)
             {
                 //初始化几个部件
@@ -84,6 +82,7 @@ public class Stage2 : MonoBehaviour
             }
             //开始执行运动函数
             posMove();
+            Debug.Log(pos.transform.position);
             if (slide2.transform.position.x - slide1.transform.position.x < minDistance)
             {
                 Vector3 min = slide1.transform.position;
@@ -97,18 +96,21 @@ public class Stage2 : MonoBehaviour
                 min.x = slide2.transform.position.x - minDistance;
                 slide1.transform.position = min;
             }
-            if (isBulid)
-            {
-                slide.transform.position = (slide1.transform.position + slide2.transform.position) / 2;
-                Vector3 size = new Vector3(1, 0.65f, 0);
-                size.x = slide2.transform.position.x - slide1.transform.position.x;
-                slide.transform.localScale = size;
-            }
+        if (isBulid)
+        {
+            Vector3 newPos = slide.transform.position;
+            newPos.x = slide1.transform.position.x / 2 + slide2.transform.position.x / 2;
+            slide.transform.position = newPos;
+            Vector3 size = new Vector3(1, 0.65f, 0);
+            size.x = slide2.transform.position.x - slide1.transform.position.x;
+            slide.transform.localScale = size;
+
+            //判定各个部件不能超过边界
+            inTheLine(pos);
+            inTheLine(slide1);
+            inTheLine(slide2);
         }
-        //判定各个部件不能超过边界
-        inTheLine(pos);
-        inTheLine(slide1);
-        inTheLine(slide2);
+        
 
     }
     void bulid()
@@ -150,8 +152,9 @@ public class Stage2 : MonoBehaviour
     {
         float horizon = Input.GetAxis("Horizontal");
         Vector3 nextPos = pos.transform.position;
-        nextPos.x = nextPos.x + speed * horizon * Time.deltaTime + returnspeed * Time.deltaTime ;
+        nextPos.x= nextPos.x + (speed * horizon * Time.deltaTime + returnspeed * Time.deltaTime) ;
         pos.transform.position = nextPos;
+        //pos.transform.position = nextPos;
         if(isEnter&&m<thisAnimal.data.radSpeed.Length)
         {
             cd1 += Time.deltaTime;
@@ -179,11 +182,13 @@ public class Stage2 : MonoBehaviour
         if (pos.transform.position.x > slide_start1.x && !isEnter)
         {
             isEnter = true;
+            Debug.Log("enter");
         }
         //Debug.Log(pos.transform.position.x + " " + slide1.gameObject.transform.position.x + " " + slide2.gameObject.transform.position.x);
-        if (pos.transform.position.x > slide1.transform.position.x && pos.transform.position.x < slide2.transform.position.x && isEnter)
+        if (pos.transform.position.x> slide1.transform.position.x && pos.transform.position.x  < slide2.transform.position.x && isEnter)
         {
             startTime += Time.deltaTime;
+            Debug.Log("计时");
         }//如果在规定范围里就计时
         if (isEnter)
         {
@@ -196,12 +201,12 @@ public class Stage2 : MonoBehaviour
             fail();
             finishSecondStep();
         }
-        distance = (pos.transform.position.x - (-9f)) / 18f;
+        distance =(pos.transform.position.x+9)/18;
     }
     void slideMove()//判定框的移动
     {
         if (slide2.transform.position.x - slide1.transform.position.x > minDistance + 0.00001f)
-            if (pos.transform.position.x > slide2.transform.position.x)
+            if (slide.transform.position.x > slide2.transform.position.x)
             {
                 if (cd < 0f)
                 {
@@ -288,7 +293,7 @@ public class Stage2 : MonoBehaviour
 
         isBulid = false;
         isFinishSecStep = true;
-        LevelController.Instance.SwitchGameState(PlayerState.Transition);
+        //LevelController.Instance.SwitchGameState(PlayerState.Transition);
     }
     void fail()
     {
@@ -322,7 +327,7 @@ public class Stage2 : MonoBehaviour
                 near = allAnimals[i];
             }    
         }
-        //Debug.Log("找到了动物" + near);
+        Debug.Log("找到了动物" + near);
         return near;
     }
 }
