@@ -14,6 +14,7 @@ public enum PlayerState
 }
 public class LevelController : Singleton<LevelController>
 {
+    public string BGM;
     public AnimalManager animalManager;
     public DialoguePanel dialoguePanel;
 
@@ -39,7 +40,10 @@ public class LevelController : Singleton<LevelController>
 
     private void Start()
     {
+
         GameManager.Instance.LevelInit();
+        AudioManager.Instance.PlayBGM(BGM);
+
         doctor.TurnAround(false);
         doctor.SetSweat(false);
         StartCoroutine(PreCG());
@@ -69,6 +73,7 @@ public class LevelController : Singleton<LevelController>
                 {
                     yield return null;
                 }
+                AudioManager.Instance.PlaySE("Page");
             }
             CG.gameObject.GetComponent<Window>().Hide();
             yield return new WaitForSeconds(3f);
@@ -91,12 +96,14 @@ public class LevelController : Singleton<LevelController>
                 {
                     yield return null;
                 }
+                AudioManager.Instance.PlaySE("Page");
             }
             CG.gameObject.GetComponent<Window>().Hide();
             yield return new WaitForSeconds(3f);
         }
         SceneLoader.Instance.UnloadSceneAsync("GameScene");
         SceneLoader.Instance.LoadSceneAsync("GradeScene");
+        AudioManager.Instance.StopBGM(BGM);
     }
     public void SwitchGameState(PlayerState state)
     {
@@ -222,20 +229,20 @@ public class LevelController : Singleton<LevelController>
         doctor.TurnAround(false);
         //Destroy(secondStage);
         //doctor.Init();
-        //var a = animalManager.testAnimal;
-        //if (a != null)
-        //{
-        //    foreach (var pd in a.data.postlogs)
-        //    {
-        //        dialoguePanel.AddDialogue(pd);
-        //        yield return null;
-        //    }
-        //}
-        //while (dialoguePanel.IsDialoging)
-        //{
-        //    yield return null;
-        //}
-        yield return new WaitForSeconds(2f);
+        var a = animalManager.testAnimal;
+        if (a != null)
+        {
+            foreach (var pd in a.data.postlogs)
+            {
+                dialoguePanel.AddDialogue(pd);
+                yield return null;
+            }
+        }
+        while (dialoguePanel.IsDialoging)
+        {
+            yield return null;
+        }
+        //yield return new WaitForSeconds(2f);
         SwitchGameState(PlayerState.Transition);
         yield return null;
     }
@@ -243,9 +250,12 @@ public class LevelController : Singleton<LevelController>
     private IEnumerator DoTransition()
     {
         // ´ý¸ü¸Ä
+        AudioManager.Instance.PlaySE("Button3");
         emotion.MakeEmotion(Emotion.EmotionType.Good);
+
         GameManager.Instance.TestCount++;
         GameManager.Instance.Score += currentScore;
+
         yield return new WaitForSeconds(2f);
         animalManager.Proceed();
         SwitchGameState(PlayerState.Ready);

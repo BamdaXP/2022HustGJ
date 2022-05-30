@@ -56,6 +56,7 @@ public List<Dialogue> dialogueQueue;
         {
             if (Input.GetMouseButtonDown(0))
             {
+                AudioManager.Instance.PlaySE("Page");
                 dialogueQueue.RemoveAt(0);
                 DialogingDialogue = null;
                 IsWaitingForNext = false;

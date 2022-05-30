@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 1023596642}
   - component: {fileID: 1023596641}
   m_Layer: 0
-  m_Name: StarParticle
+  m_Name: StarParticle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6533,7 +6533,7 @@ GameObject:
   - component: {fileID: 1909172235}
   - component: {fileID: 1909172234}
   m_Layer: 0
-  m_Name: StarParticle
+  m_Name: StarParticle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
