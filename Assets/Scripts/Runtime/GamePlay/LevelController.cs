@@ -23,10 +23,10 @@ public class LevelController : Singleton<LevelController>
     public PlayerState PlayerState;
 
     //public GameObject firstStagePrefab;
-    //public GameObject secondStagePrefab;
+    public GameObject secondStagePrefab;
 
     public Window firstStage;
-    public Window secondStage;
+    public GameObject secondStage;
     public Stage1 stage1;
     public Stage2 stage2;
 
@@ -138,10 +138,9 @@ public class LevelController : Singleton<LevelController>
             while (animalManager.testAnimal == null)
             {
                 animalManager.Proceed();
-                yield return null;
+                yield return new WaitForSeconds(3.0f);
             }
         }
-        yield return new WaitForSeconds(3f);
         
         
         SwitchGameState(PlayerState.Dialog1);
@@ -202,13 +201,13 @@ public class LevelController : Singleton<LevelController>
 
     private IEnumerator DoStage2()
     {
-        /*
+
         // ´ý¸ü¸Ä
-        Destroy(firstStage);
+        //Destroy(firstStage);
         secondStage = Instantiate<GameObject>(secondStagePrefab, null, true);
         doctor.depthSource = secondStage.GetComponent<Stage2>();
         //yield return new WaitForSeconds(2f);
-        */
+
         //var a = animalManager.testAnimal;
         //if (a != null)
         //{
@@ -216,8 +215,13 @@ public class LevelController : Singleton<LevelController>
         //    yield return new WaitForSeconds(0.3f);
         //}
         //secondStage.Show();
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
         //secondStage.Hide();
+        while (!doctor.depthSource.isFinishSecStep)
+        {
+            yield return null;
+        }
+        Destroy(secondStage);
         doctor.depthSource = null;
         SwitchGameState(PlayerState.Dialog2);
         yield return null;

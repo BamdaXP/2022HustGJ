@@ -33,23 +33,23 @@ public class AnimalManager : MonoBehaviour
         {
             endAnimal.ChangeSprite(true);
             endAnimal.GetComponent<SpriteRenderer>().sortingLayerName = "CheckedAnimal";
-            endAnimal.transform.DOMove(endPoint.position, 3);
-            endAnimal.transform.DOScaleY(Random.Range(1.01f,1.05f) , 0.3f).SetLoops(10, LoopType.Yoyo);
+            //endAnimal.transform.DOMove(endPoint.position, 3);
+            endAnimal.transform.DOBlendableMoveBy(endPoint.position-endAnimal.transform.position, 3f);
+            endAnimal.transform.DOBlendableLocalMoveBy(new Vector3(0, -0.15f, 0), 0.3f).SetLoops(10, LoopType.Yoyo);
         }
 
         testAnimal = backupAnimal;
         if (testAnimal != null)
         {
-            testAnimal.transform.DOMove(testPoint.position, 3);
-            testAnimal.transform.DOScaleY(Random.Range(1.01f, 1.05f), 0.3f).SetLoops(10, LoopType.Yoyo);
-            //StartCoroutine(SetSpriteAfterTime(testAnimal, false, 3));
+            testAnimal.transform.DOBlendableMoveBy(testPoint.position-testAnimal.transform.position, 3f);
+            testAnimal.transform.DOBlendableLocalMoveBy(new Vector3(0, -0.15f, 0), 0.3f).SetLoops(10, LoopType.Yoyo);
         }
 
         backupAnimal = initAnimal;
         if (backupAnimal != null)
         {
-            backupAnimal.transform.DOMove(backupPoint.position, 3);
-            backupAnimal.transform.DOScaleY(Random.Range(1.01f, 1.05f), 0.3f).SetLoops(10, LoopType.Yoyo);
+            backupAnimal.transform.DOBlendableMoveBy(backupPoint.position-backupAnimal.transform.position, 3f);
+            backupAnimal.transform.DOBlendableLocalMoveBy(new Vector3(0, -0.15f, 0), 0.3f).SetLoops(10, LoopType.Yoyo);
         }
 
         if (datas.Count > 0)
@@ -57,7 +57,7 @@ public class AnimalManager : MonoBehaviour
             initAnimal = Instantiate<GameObject>(animalPfb, transform).GetComponent<Animal>();
             initAnimal.data = datas[0];
             initAnimal.transform.position = initPoint.position;
-            initAnimal.sr.sortingOrder = datas.Count;
+            //initAnimal.sr.sortingOrder = datas.Count;
             datas.RemoveAt(0);
         }
         else
