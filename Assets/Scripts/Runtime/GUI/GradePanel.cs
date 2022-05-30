@@ -81,7 +81,24 @@ public class GradePanel : MonoBehaviour
     public void Next()
     {
         AudioManager.Instance.PlaySE("Button2");
-        SceneLoader.Instance.LoadSceneAsync("GameScene");
+        if (GameManager.Instance.currentLevelName == "Level1")
+        {
+            GameManager.Instance.currentLevelName = "Level2";
+            SceneLoader.Instance.LoadSceneAsync("Level2");
+        }
+
+        if (GameManager.Instance.currentLevelName == "Level2")
+        {
+            GameManager.Instance.currentLevelName = "Level3";
+            SceneLoader.Instance.LoadSceneAsync("Level3");
+        }
+
+        if (GameManager.Instance.currentLevelName == "Level3")
+        {
+            GameManager.Instance.currentLevelName = "";
+            SceneLoader.Instance.LoadSceneAsync("TitleScene");
+        }
+
         SceneLoader.Instance.UnloadSceneAsync("GradeScene");
         AudioManager.Instance.StopBGM("BGM3");
     }

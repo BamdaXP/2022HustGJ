@@ -101,7 +101,7 @@ public class LevelController : Singleton<LevelController>
             CG.gameObject.GetComponent<Window>().Hide();
             yield return new WaitForSeconds(3f);
         }
-        SceneLoader.Instance.UnloadSceneAsync("GameScene");
+        SceneLoader.Instance.UnloadSceneAsync(GameManager.Instance.currentLevelName);
         SceneLoader.Instance.LoadSceneAsync("GradeScene");
         AudioManager.Instance.StopBGM(BGM);
     }
