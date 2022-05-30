@@ -61,10 +61,14 @@ public class Stage1 : MonoBehaviour
 
     public void Init()
     {
-        AnimalData currentAnimalData = LevelController.Instance.animalManager.testAnimal.data;
-        m_height = currentAnimalData.height;
-        m_heightRange = currentAnimalData.heightRange;
-        m_maxPressTime = currentAnimalData.heightTime;
+        if (LevelController.Instance.animalManager.testAnimal != null)
+        {
+            AnimalData currentAnimalData = LevelController.Instance.animalManager.testAnimal.data;
+            m_height = currentAnimalData.height;
+            m_heightRange = currentAnimalData.heightRange;
+            m_maxPressTime = currentAnimalData.heightTime;
+        }
+        
         m_checkAreaTransform.localPosition = new Vector2
             (m_checkAreaTransform.localPosition.x, m_height * m_heightMultiplier * 2);
         m_checkAreaTransform.localScale = new Vector2
