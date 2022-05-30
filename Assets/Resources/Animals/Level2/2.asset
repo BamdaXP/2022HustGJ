@@ -54,6 +54,11 @@ MonoBehaviour:
   - 2
   keepTime: 13
   maxTime: 25
-  hitDis: 0.4
   slideStart_L: {x: -1.5, y: 6.2, z: 0}
   slideStart_R: {x: 1, y: 6.2, z: 0}
+  hitDis: 0.4
+  prelogs: []
+  postlogs: []
+  cgs: []
+  maskSprite: {fileID: 21300000, guid: 499485d1bc135274b8b525e105c834e3, type: 3}
+  aSprite: {fileID: 21300000, guid: c524b428779dce646bfb2e0239007680, type: 3}
