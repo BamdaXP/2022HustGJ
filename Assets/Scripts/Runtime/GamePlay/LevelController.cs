@@ -34,12 +34,17 @@ public class LevelController : Singleton<LevelController>
     public List<Sprite> postCGs;
 
     public Emotion emotion;
+
+    private int currentScore;
+
     private void Start()
     {
         GameManager.Instance.LevelInit();
         doctor.TurnAround(false);
+        doctor.SetSweat(false);
         StartCoroutine(PreCG());
     }
+
     private bool end = false;
     private void Update()
     {
@@ -158,6 +163,11 @@ public class LevelController : Singleton<LevelController>
 
     private IEnumerator DoStage1()
     {
+        if (GameManager.Instance.TestCount >= 3)
+        {
+            doctor.SetSweat(true);
+        }
+        currentScore = 0;
         animalManager.testAnimal.ChangeSprite(false);
 
         // 待更改
@@ -175,6 +185,7 @@ public class LevelController : Singleton<LevelController>
             //print("stage 1 for 3 s");
             yield return new WaitForSeconds(0.3f);
         }
+        currentScore += stage1.Score;
         firstStage.Hide();
         doctor.heightSource = null;
         SwitchGameState(PlayerState.Stage2);
@@ -233,6 +244,8 @@ public class LevelController : Singleton<LevelController>
     {
         // 待更改
         emotion.MakeEmotion(Emotion.EmotionType.Good);
+        GameManager.Instance.TestCount++;
+        GameManager.Instance.Score += currentScore;
         yield return new WaitForSeconds(2f);
         animalManager.Proceed();
         SwitchGameState(PlayerState.Ready);

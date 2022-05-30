@@ -161,6 +161,7 @@ MonoBehaviour:
   doctorSR: {fileID: 1567172503}
   testingSprite: {fileID: 21300000, guid: 1b1c25cb1e1f239478256c82f29a691e, type: 3}
   turnAroundSprite: {fileID: 21300000, guid: 2b8d31c116243514e89bb3f6ef1b052d, type: 3}
+  sweatAnimator: {fileID: 473821608}
   moveSpeed: 6
 --- !u!4 &131989298
 Transform:

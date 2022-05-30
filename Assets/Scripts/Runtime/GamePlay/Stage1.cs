@@ -37,7 +37,7 @@ public class Stage1 : MonoBehaviour
     private float m_maxPressTime = 1f;
     [SerializeField]
     private Slider m_timeSlider;
-    private float m_score;
+    private int m_score;
 
     public float CurrentHeight
     {
@@ -49,7 +49,7 @@ public class Stage1 : MonoBehaviour
         get { return m_finished; }
     }
 
-    public float Score
+    public int Score
     {
         get { return m_score; }
     }
@@ -71,7 +71,7 @@ public class Stage1 : MonoBehaviour
         m_finished = false;
         m_canControl = true;
         m_pressTimer = 0f;
-        m_score = 0f;
+        m_score = 0;
     }
 
     private void Update()
@@ -164,7 +164,7 @@ public class Stage1 : MonoBehaviour
     {
         if (m_currentHeight > m_height + m_heightRange / 2 || m_currentHeight < m_height - m_heightRange / 2)
             return false;
-        m_score = 1f - (m_currentHeight - m_height) / m_heightRange / 2;
+        m_score = 100 - (int)((m_currentHeight - m_height) / m_heightRange * 50);
         return true;
     }
 
