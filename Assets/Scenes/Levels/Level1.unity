@@ -8851,8 +8851,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -174, y: 0}
-  m_SizeDelta: {x: -372, y: -24}
+  m_AnchoredPosition: {x: -114, y: 0}
+  m_SizeDelta: {x: -252, y: -24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103367844
 MonoBehaviour:
@@ -8913,7 +8913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7D27\u6025\u63D2\u64AD\u4E00\u6761\u65B0\u95FB\uFF01\uFF01\uFF01"
+  m_text: "\u7D27\u6025\u63D2\u64AD\u4E00\u6761\u65B0\u95FB\uFF01\uFF01\u7D27\u6025\u63D2\u64AD\u4E00\u6761\u65B0\u95FB\uFF01\uFF01\u7D27\u6025\u63D2\u64AD\u4E00\u6761\u65B0\u95FB\uFF01\uFF01"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5db9a8b23b7ac284f83eb46c10db1962, type: 2}
   m_sharedMaterial: {fileID: -123339441462158301, guid: 5db9a8b23b7ac284f83eb46c10db1962, type: 2}
@@ -8940,8 +8940,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

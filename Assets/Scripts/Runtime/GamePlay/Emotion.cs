@@ -18,7 +18,7 @@ public class Emotion : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
 
-        MakeEmotion(EmotionType.Good);
+        //MakeEmotion(EmotionType.Good);
     }
 
     public void MakeEmotion(EmotionType type)

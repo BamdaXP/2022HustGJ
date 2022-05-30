@@ -30,6 +30,10 @@ public class AnimalData : ScriptableObject
     public List<Dialogue> prelogs = new List<Dialogue>();
     public List<Dialogue> postlogs = new List<Dialogue>();
 
+    public List<Sprite> cgs = new List<Sprite>();
+
     public Sprite maskSprite;
     public Sprite aSprite;
+
+
 }
