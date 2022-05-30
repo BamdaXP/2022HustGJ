@@ -25,8 +25,8 @@ public class GradePanel : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         finish.transform.DOScale(1.25f, 2f).SetLoops(-1, LoopType.Yoyo);
-        var words1 = "    今天共检测12位居民";
-        var words2 = "  满意率100%";
+        var words1 = $"    今天共检测{GameManager.Instance.TestCount}位居民";
+        var words2 = $"  满意率{GameManager.Instance.Score/GameManager.Instance.TestCount}%";
         var words3 = "感谢您为居民健康做出的贡献！";
         var type = "";
         foreach (var c in words1)
