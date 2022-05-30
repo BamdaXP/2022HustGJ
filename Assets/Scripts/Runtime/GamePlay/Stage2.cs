@@ -8,6 +8,7 @@ public class Stage2 : MonoBehaviour
     public GameObject slide;//控制区间的边界(左和右)
     public GameObject slide1, slide2;
     public GameObject pos;//指针
+    public Stage2Test stag2;
 
     public bool isFinishFirStep;//第一步是否完成(高度控制部分)
     public bool isTired;//是否处于疲劳状态
@@ -68,8 +69,7 @@ public class Stage2 : MonoBehaviour
         isBack = false;
 
         //测试用
-
-        isFinishFirStep = true;
+        //isFinishFirStep = true;
     }
 
     // Update is called once per frame
@@ -99,16 +99,19 @@ public class Stage2 : MonoBehaviour
             }
             if (isBulid)
             {
-                slide.transform.position = (slide1.transform.position + slide2.transform.position) / 2;
-                Vector3 size = new Vector3(1, 0.65f, 0);
-                size.x = slide2.transform.position.x - slide1.transform.position.x;
+                Vector3 newPos = slide.transform.position;
+                newPos.x = ((slide1.transform.position.x/2 + slide2.transform.position.x/2) / 16f + 0.5f) * 1920;
+                slide.transform.position = newPos;
+                Vector3 size = new Vector3(1, 125f, 0);
+                size.x = (slide2.transform.position.x - slide1.transform.position.x) /16f*1920;
                 slide.transform.localScale = size;
+
+                //判定各个部件不能超过边界
+                inTheLine(stag2.pointPercentage);
+                inTheLine(slide1);
+                inTheLine(slide2);
             }
         }
-        //判定各个部件不能超过边界
-        inTheLine(pos);
-        inTheLine(slide1);
-        inTheLine(slide2);
 
     }
     void bulid()
@@ -121,6 +124,7 @@ public class Stage2 : MonoBehaviour
         isBulid = true;
         //
         thisAnimal = findTheNearest();
+        stag2 = GetComponent<Stage2Test>();
         //
         keepTime = thisAnimal.data.keepTime;
         maxTime = thisAnimal.data.maxTime;
@@ -145,13 +149,15 @@ public class Stage2 : MonoBehaviour
         n = 0;
         m = 0;
         changetime = thisAnimal.data.change[0];
+        stag2.pointPercentage = 0f;
     }
     void posMove()//指针的移动
     {
         float horizon = Input.GetAxis("Horizontal");
-        Vector3 nextPos = pos.transform.position;
-        nextPos.x = nextPos.x + speed * horizon * Time.deltaTime + returnspeed * Time.deltaTime ;
-        pos.transform.position = nextPos;
+        float nextPos = stag2.pointPercentage;
+        nextPos= nextPos + (speed * horizon * Time.deltaTime + returnspeed * Time.deltaTime) / 12.8f ;
+        stag2.pointPercentage = nextPos;
+        //pos.transform.position = nextPos;
         if(isEnter&&m<thisAnimal.data.radSpeed.Length)
         {
             cd1 += Time.deltaTime;
@@ -176,14 +182,16 @@ public class Stage2 : MonoBehaviour
                 p++;
             }
         }
-        if (pos.transform.position.x > slide_start1.x && !isEnter)
+        if ((stag2.pointPercentage-0.5f)*12.8f > slide_start1.x && !isEnter)
         {
             isEnter = true;
+            Debug.Log("enter");
         }
         //Debug.Log(pos.transform.position.x + " " + slide1.gameObject.transform.position.x + " " + slide2.gameObject.transform.position.x);
-        if (pos.transform.position.x > slide1.transform.position.x && pos.transform.position.x < slide2.transform.position.x && isEnter)
+        if ((stag2.pointPercentage - 0.5f) * 12.8f > slide1.transform.position.x && (stag2.pointPercentage - 0.5f) *12.8f < slide2.transform.position.x && isEnter)
         {
             startTime += Time.deltaTime;
+            Debug.Log("计时");
         }//如果在规定范围里就计时
         if (isEnter)
         {
@@ -196,12 +204,12 @@ public class Stage2 : MonoBehaviour
             fail();
             finishSecondStep();
         }
-        distance = (pos.transform.position.x - (-9f)) / 18f;
+        distance = stag2.pointPercentage;
     }
     void slideMove()//判定框的移动
     {
         if (slide2.transform.position.x - slide1.transform.position.x > minDistance + 0.00001f)
-            if (pos.transform.position.x > slide2.transform.position.x)
+            if ((stag2.pointPercentage - 0.5f) * 12.8f > slide2.transform.position.x)
             {
                 if (cd < 0f)
                 {
@@ -310,6 +318,13 @@ public class Stage2 : MonoBehaviour
            // Debug.Log("越界"+p.transform.position);
         }
     }
+    void inTheLine(float p)
+    {
+        if (p < 0f)
+            p = 0f;
+        if (p > 1f)
+            p = 1f;
+    }
     //寻找距离最近的animal
     Animal findTheNearest()
     {
@@ -322,7 +337,7 @@ public class Stage2 : MonoBehaviour
                 near = allAnimals[i];
             }    
         }
-        //Debug.Log("找到了动物" + near);
+        Debug.Log("找到了动物" + near);
         return near;
     }
 }
