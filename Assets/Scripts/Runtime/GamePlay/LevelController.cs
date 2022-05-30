@@ -31,6 +31,7 @@ public class LevelController : Singleton<LevelController>
     public List<Sprite> preCGs;
     public List<Sprite> postCGs;
 
+    public Emotion emotion;
     private void Start()
     {
         doctor.TurnAround(false);
@@ -125,9 +126,6 @@ public class LevelController : Singleton<LevelController>
                 yield return null;
             }
         }
-        
-        
-
         yield return new WaitForSeconds(3f);
         
         
@@ -220,7 +218,8 @@ public class LevelController : Singleton<LevelController>
     private IEnumerator DoTransition()
     {
         // ´ý¸ü¸Ä
-        //yield return new WaitForSeconds(3f);
+        emotion.MakeEmotion(Emotion.EmotionType.Good);
+        yield return new WaitForSeconds(2f);
         animalManager.Proceed();
         SwitchGameState(PlayerState.Ready);
         yield return null;
