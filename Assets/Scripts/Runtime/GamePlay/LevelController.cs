@@ -226,6 +226,7 @@ public class LevelController : Singleton<LevelController>
     private IEnumerator DoDialog2()
     {
         animalManager.testAnimal.ChangeSprite(true);
+        doctor.Init();
         doctor.TurnAround(false);
         //Destroy(secondStage);
         //doctor.Init();

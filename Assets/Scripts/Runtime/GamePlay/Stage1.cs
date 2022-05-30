@@ -61,6 +61,10 @@ public class Stage1 : MonoBehaviour
 
     public void Init()
     {
+        AnimalData currentAnimalData = LevelController.Instance.animalManager.testAnimal.data;
+        m_height = currentAnimalData.height;
+        m_heightRange = currentAnimalData.heightRange;
+        m_maxPressTime = currentAnimalData.heightTime;
         m_checkAreaTransform.localPosition = new Vector2
             (m_checkAreaTransform.localPosition.x, m_height * m_heightMultiplier * 2);
         m_checkAreaTransform.localScale = new Vector2
@@ -164,7 +168,7 @@ public class Stage1 : MonoBehaviour
     {
         if (m_currentHeight > m_height + m_heightRange / 2 || m_currentHeight < m_height - m_heightRange / 2)
             return false;
-        m_score = 100 - (int)((m_currentHeight - m_height) / m_heightRange * 50);
+        m_score = 100 - (int)(Mathf.Abs(m_currentHeight - m_height) / m_heightRange * 20);
         return true;
     }
 
