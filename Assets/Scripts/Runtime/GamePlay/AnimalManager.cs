@@ -55,6 +55,7 @@ public class AnimalManager : MonoBehaviour
         if (datas.Count > 0)
         {
             initAnimal = Instantiate<GameObject>(animalPfb, transform).GetComponent<Animal>();
+            initAnimal.data = datas[0];
             initAnimal.transform.position = initPoint.position;
             initAnimal.sr.sortingOrder = datas.Count;
             datas.RemoveAt(0);

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22db1b9c933b00439245de0eddafda2, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  height: 0.5
+  heightRange: 0.3
+  heightTime: 0.4
+  change:
+  - 1
+  - 1
+  - 1
+  - 1
+  fir:
+  - 3
+  - -1
+  - -3
+  - -3
+  sec:
+  - 3
+  - -1
+  - -3
+  - -3
+  radTime:
+  - 2
+  - 2
+  - 4
+  radSpeed:
+  - 2
+  - -1
+  - 3
+  sceTime:
+  - 2
+  - 3
+  - 0.5
+  sceSpeed:
+  - 2
+  - -4
+  - 0
+  keepTime: 13
+  maxTime: 25
+  slideStart_L: {x: 1, y: 6.2, z: 0}
+  slideStart_R: {x: 5, y: 6.2, z: 0}
+  hitDis: 0.25
+  prelogs:
+  - {fileID: 11400000, guid: cee34d76e0ef0be41bc815d745c4725a, type: 2}
+  postlogs:
+  - {fileID: 11400000, guid: 6537e1b664492b0478007e0103da14e9, type: 2}
+  maskSprite: {fileID: 21300000, guid: 790cdea0c02d4a84b8612762637f46bc, type: 3}
+  aSprite: {fileID: 21300000, guid: eb7d668b3f064eb48b5f455280add63c, type: 3}

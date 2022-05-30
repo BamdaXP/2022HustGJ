@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22db1b9c933b00439245de0eddafda2, type: 3}
+  m_Name: dog (tired dabai)
+  m_EditorClassIdentifier: 
+  height: 0.7
+  heightRange: 0.2
+  heightTime: 0.6
+  change:
+  - 1
+  - 1
+  - 1
+  - 1
+  fir:
+  - 2
+  - -4
+  - 4
+  - -4
+  sec:
+  - 2
+  - -4
+  - 4
+  - -4
+  radTime:
+  - 1
+  - 1
+  - 2
+  - 2
+  - 2
+  radSpeed:
+  - 3
+  - -1
+  - 2
+  - 0
+  - 1
+  sceTime:
+  - 2
+  - 0.4
+  - 2
+  - 0.4
+  - 1
+  sceSpeed:
+  - 5
+  - 0
+  - -6
+  - 0
+  - 1
+  keepTime: 13
+  maxTime: 25
+  slideStart_L: {x: -1.5, y: 6.2, z: 0}
+  slideStart_R: {x: 1.5, y: 6.2, z: 0}
+  hitDis: 0.3
+  prelogs: []
+  postlogs: []
+  maskSprite: {fileID: 0}
+  aSprite: {fileID: 0}
